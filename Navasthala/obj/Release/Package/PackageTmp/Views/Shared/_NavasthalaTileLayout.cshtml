@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Navasthala Innovations</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
+        <meta name="description" content="My Tours">
+        <meta name="author" content="RajeevKanth Mohandas">
+        <meta name="keywords" content="Navasthala, Bangalore, Innovations, Solar, Green">
+        <link href="/css/modern.css" rel="stylesheet">
+        <link href="/css/theme-dark.css" rel="stylesheet">
+        <link href="/css/modern-responsive.css" rel="stylesheet">
+
+    </head>
+    <script src="/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/js/assets/google-analytics.js"></script>
+    <script src="/js/assets/jquery.mousewheel.min.js"></script>
+    <script src="/js/assets/github.info.js"></script>
+    <script src="/js/modern/tile-slider.js"></script>
+    <script src="/js/modern/start-menu.js"></script>
+    <script src="/js/modern/tile-drag.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Home').mousedown(function () {
+
+                window.location.href = "@Url.Action("Index","Home")";
+            });
+
+        });
+    </script>
+    
+    <body>
+        <div class="metrouicss">
+            <div class="page secondary fixed-header">
+                <div class="page-header ">
+                    <div class="modern-ui-logo page-header-content" id="Home">
+                        <img src="/images/Logo.png" alt="" style="padding-left: 125px;padding-top: 20px;cursor:pointer;">
+                        <p class="featured fg-color-white icon-lightning">Light years ahead</p>
+                    </div>
+                    </div>
+                    <div class="page-region">
+                        @RenderSection("scripts", required: false) 
+                        @RenderBody()
+                    </div>
+                </div>    
+            </div>
+    </body>
+
+   @*    <body>
+        <div>
+            @RenderSection("scripts", required: false) 
+            @RenderBody()
+        </div>
+    </body>*@
+
+</html>
