@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navasthala", "Navasthala\Navasthala.csproj", "{45A9B5DD-A296-4F5E-9A61-9E642B9F55CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{A4DD44BD-4C94-4BE8-ACE9-19F3CFEEB804}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{45A9B5DD-A296-4F5E-9A61-9E642B9F55CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45A9B5DD-A296-4F5E-9A61-9E642B9F55CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45A9B5DD-A296-4F5E-9A61-9E642B9F55CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DD44BD-4C94-4BE8-ACE9-19F3CFEEB804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DD44BD-4C94-4BE8-ACE9-19F3CFEEB804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DD44BD-4C94-4BE8-ACE9-19F3CFEEB804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DD44BD-4C94-4BE8-ACE9-19F3CFEEB804}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

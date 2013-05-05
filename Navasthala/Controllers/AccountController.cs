@@ -5,11 +5,11 @@ using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using DataLayer.Models;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Navasthala.Filters;
-using Navasthala.Models;
 
 namespace Navasthala.Controllers
 {
@@ -17,6 +17,12 @@ namespace Navasthala.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private readonly NavasthalaContext _context;
+        public AccountController(NavasthalaContext context)
+        {
+            _context = context;
+        }
+        
         //
         // GET: /Account/Login
 
@@ -263,15 +269,14 @@ namespace Navasthala.Controllers
             if (ModelState.IsValid)
             {
                 // Insert a new user into the database
-                using (UsersContext db = new UsersContext())
-                {
-                    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+
+                UserProfile user = _context.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                     // Check if user already exists
                     if (user == null)
                     {
                         // Insert name into the profile table
-                        db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
-                        db.SaveChanges();
+                        _context.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+                        _context.SaveChanges();
 
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
@@ -282,7 +287,7 @@ namespace Navasthala.Controllers
                     {
                         ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
                     }
-                }
+                
             }
 
             ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;

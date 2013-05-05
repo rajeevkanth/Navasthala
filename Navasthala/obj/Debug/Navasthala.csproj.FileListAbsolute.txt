@@ -1,6 +1,8 @@
+C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Navasthala.pdb
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Antlr3.Runtime.dll
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DataLayer.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.AspNet.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.Core.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OAuth.Consumer.dll
@@ -11,6 +13,7 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\EntityFramework.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Microsoft.Web.Infrastructure.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Newtonsoft.Json.dll
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\System.Net.Http.Formatting.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\System.Web.Helpers.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\System.Web.Http.dll
@@ -24,6 +27,9 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\System.Web.WebPages.Razor.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\WebGrease.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\WebMatrix.Data.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\WebMatrix.WebData.dll
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DataLayer.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\EntityFramework.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Newtonsoft.Json.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\System.Net.Http.Formatting.xml
@@ -44,6 +50,5 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OAuth.Consumer.x
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OAuth.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.pdb
