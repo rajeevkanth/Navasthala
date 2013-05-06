@@ -31,7 +31,7 @@ namespace Navasthala
         private void InitialiseDataBase()
         {
             WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
-           }
+        }
 
         private void Register()
         {

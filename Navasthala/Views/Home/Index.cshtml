@@ -12,6 +12,11 @@
             $('#Contact').mouseup(function () {
 
                 window.location.href = "@Url.Action("Contact","Home")";
+            });
+            
+            $('#Investor').mouseup(function () {
+
+                window.location.href = "@Url.Action("Index","Investor")";
                         });
         });
         
@@ -101,9 +106,9 @@
                 
                 <div class="tile-group tile-drag">
                     
-                    <div class="tile double  bg-color-yellow">
+                    <div class="tile double  bg-color-yellow" id="Investor">
                         <div class="tile-content fg-color-blueDark">
-                            <h2>Investors section</h2>
+                            <h2>Investors Dashboard</h2>
                             <h5>Together, we grow</h5>
                             <p>
                                 click for more details.                        

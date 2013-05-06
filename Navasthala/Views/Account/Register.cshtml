@@ -1,37 +1,29 @@
-﻿@model Navasthala.Models.RegisterModel
+﻿@model DataLayer.Models.RegisterModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Ok, lets get you started";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>Create a new account.</h2>
-</hgroup>
-
-@using (Html.BeginForm()) {
+<div class="page-region-content fg-color-white">
+    
+    <h3 class="fg-color-white icon-thumbs-up"> @ViewBag.Title.</h3>
+    <br>
+    <section id="login-form">
+    @using (Html.BeginForm()) 
+    {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <fieldset>
-        <legend>Registration Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
-        </ol>
-        <input type="submit" value="Register" />
-    </fieldset>
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Html.LabelFor(m => m.UserName)
+    @Html.TextBoxFor(m => m.UserName)
+           
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password)
+    @Html.LabelFor(m => m.ConfirmPassword)
+    @Html.PasswordFor(m => m.ConfirmPassword)
+            
+    <input type="submit" id="submit-button" value="Register" />
+    
 }
+        </section>
+</div>

@@ -9,7 +9,8 @@ namespace Navasthala.ControllerRegistry
     {
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            return ObjectFactory.GetInstance(controllerType) as IController;
+            var controller =  ObjectFactory.GetInstance(controllerType) as IController;
+            return controller;
         }
     }
 }

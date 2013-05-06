@@ -1,3 +1,6 @@
+using System.Web.Security;
+using WebMatrix.WebData;
+
 namespace DataLayer.Migrations
 {
     using System;
@@ -9,23 +12,65 @@ namespace DataLayer.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Models.NavasthalaContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider) Membership.Provider;
+
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
+
+            if (!roles.RoleExists("Investor"))
+            {
+                roles.CreateRole("Investor");
+            }
+
+            if (membership.GetUser("Rajeev", false) == null)
+            {
+                membership.CreateUserAndAccount("Rajeev", "Admin123");
+            }
+
+            if (membership.GetUser("Vikram", false) == null)
+            {
+                membership.CreateUserAndAccount("Vikram", "Admin123");
+            }
+
+            if (membership.GetUser("Aparna", false) == null)
+            {
+                membership.CreateUserAndAccount("Aparna", "Admin123");
+            }
+
+            if (membership.GetUser("Vidya", false) == null)
+            {
+                membership.CreateUserAndAccount("Vidya", "Admin123");
+            }
+
+            if (!roles.GetRolesForUser("Rajeev").Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new []{"Rajeev"},new[]{"Admin"} );
+            }
+
+            if (!roles.GetRolesForUser("Vikram").Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new[] { "Vikram" }, new[] { "Admin" });
+            }
+
+            if (!roles.GetRolesForUser("Aparna").Contains("Investor"))
+            {
+                roles.AddUsersToRoles(new[] { "Aparna" }, new[] { "Investor" });
+            }
+
+            if (!roles.GetRolesForUser("Vidya").Contains("Investor"))
+            {
+                roles.AddUsersToRoles(new[] { "Vidya" }, new[] { "Investor" });
+            }
         }
     }
 }
