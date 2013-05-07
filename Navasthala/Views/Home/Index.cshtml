@@ -2,29 +2,56 @@
     ViewBag.Title = "Navasthala Innovations";
 }
 
+<script src="/Scripts/jquery-ui-1.8.20.js"></script>
 <script type="text/javascript">
-        $(function () {
-            $('#About').mouseup(function () {
+    $(function () {
+        $('#About').mouseup(function (e) {
 
-                window.location.href = "@Url.Action("About","Home")";
-            });
+             $('#content').hide("fade",500, function ()
+                {
+                    
+                    window.location.href = "@Url.Action("About","Home")";
+                });
+
+
+
+        });
 
             $('#Contact').mouseup(function () {
 
-                window.location.href = "@Url.Action("Contact","Home")";
+                $('#content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Contact","Home")";
+             });
+
             });
             
             $('#Investor').mouseup(function () {
 
-                window.location.href = "@Url.Action("Index","Investor")";
-                        });
+                $('#content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Index","Investor")";
+             });
+
+            });
+            
+        $('#Gallery').mouseup(function () {
+
+            $('#content').hide("fade", 500, function () {
+
+                window.location.href = "@Url.Action("Gallery","Gallery")";
+                });
+
+                    });
+
+           
         });
         
     </script>
 
 
-<div class="page-region-content tiles">
-                <div class="tile-group tile-drag" style="width:auto;max-width:644px;">
+<div class="page-region-content tiles" id="content">
+                <div class="tile-group tile-drag">
 
                     <div class="tile image" id="About">
                         <div class="tile-content">
@@ -79,27 +106,44 @@
                         </div>
                     </div>
 
-                    <div class="tile double image-slider" data-role="tile-slider" data-param-period="5000" data-param-direction="down">
+                    <div class="tile double image-slider" id="Gallery" data-role="tile-slider" data-param-period="5000" data-param-direction="down">
                         <div class="tile-content">
-                            <img src="/images/Image1.jpg" alt="">
+                            <img src="/Gallery/Bhajras/1.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image2.jpg" alt="">
+                            <img src="/Gallery/Bhajras/2.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image3.jpg" alt="">
+                            <img src="/Gallery/Work/3.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image4.jpg" alt="">
+                            <img src="/Gallery/Work/4.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image5.jpg" alt="">
+                            <img src="/Gallery/Bhajras/3.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Work/6.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Bhajras/4.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Ceramic/1.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Work/1.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Work/10.jpg" alt="">
                         </div>
                         <div class="brand">
                             <div class="badge"></div>
                             <span class="name">Gallery</span>
                         </div>
                     </div>
+                    
+
 
 
                 </div>

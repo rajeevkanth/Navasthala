@@ -14,6 +14,7 @@
          <link href="/Content/Style/style.css" rel="stylesheet">
     </head>
     <script src="/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Scripts/jquery-ui-1.8.20.js"></script>
     <script src="~/js/assets/google-analytics.js"></script>
     <script src="/js/assets/jquery.mousewheel.min.js"></script>
     <script src="/js/assets/github.info.js"></script>
@@ -25,18 +26,26 @@
         {
             $('#login').mousedown(function (e) {
                 e.stopPropagation();
-                 window.location.href = "@Url.Action("Login","Account")";
-                
+                $('.page-region').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Login","Account")";
+                });
             });
             
             $('#logoff').mousedown(function (e) {
                 e.stopPropagation();
-                window.location.href = "@Url.Action("LogOff","Account")";
+                $('.page-region').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("LogOff","Account")";
+                 });
             });
 
-            $('#Home').mousedown(function () {
-
-                window.location.href = "@Url.Action("Index","Home")";
+            $('#Home').mousedown(function ()
+            {
+                $('.page-region').hide("fade", 500, function () {
+                    
+                    window.location.href = "@Url.Action("Index","Home")";
+             });
             });
             
         });

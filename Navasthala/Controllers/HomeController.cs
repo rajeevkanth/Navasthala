@@ -18,6 +18,11 @@ namespace Navasthala.Controllers
             return View();
         }
 
+        public ActionResult UnAuthorised()
+        {
+            return View("UnAuthorisedView");
+        }
+
         public ActionResult Contact()
         {
             return View();

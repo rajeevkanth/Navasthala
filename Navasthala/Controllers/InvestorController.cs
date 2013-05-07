@@ -6,10 +6,15 @@ namespace Navasthala.Controllers
     public class InvestorController : Controller
     {
 
-        [Authorize(Roles = "Investor" )]
+        [Authorize]
         public ActionResult Index()
         {
-            return View("InvestorMainView");
+
+            if (User.IsInRole("Admin") || User.IsInRole("Investor"))
+                return View("InvestorMainView");
+
+
+            return RedirectToAction("UnAuthorised", "Home");
         }
 
     }

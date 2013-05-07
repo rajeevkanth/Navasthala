@@ -47,3 +47,8 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.RelyingPa
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Release\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Release\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Release\Navasthala.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DataLayer.dll
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.dll
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DataLayer.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\StructureMap.xml

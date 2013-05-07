@@ -2,23 +2,47 @@
     ViewBag.Title = "Navasthala Innovations";
 }
 
+<script src="/Scripts/jquery-ui-1.8.20.js"></script>
 <script type="text/javascript">
-        $(function () {
-            $('#About').mouseup(function () {
+    $(function () {
+        $('#About').mouseup(function (e) {
 
-                window.location.href = "@Url.Action("About","Home")";
-            });
+             $('#content').hide("fade",500, function ()
+                {
+                    
+                    window.location.href = "@Url.Action("About","Home")";
+                });
+
+
+
+        });
 
             $('#Contact').mouseup(function () {
 
-                window.location.href = "@Url.Action("Contact","Home")";
-                        });
+                $('#content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Contact","Home")";
+             });
+
+            });
+            
+            $('#Investor').mouseup(function () {
+
+                $('#content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Index","Investor")";
+             });
+
+            });
+            
+
+           
         });
         
     </script>
 
 
-<div class="page-region-content tiles">
+<div class="page-region-content tiles" id="content">
                 <div class="tile-group tile-drag" style="width:auto;max-width:644px;">
 
                     <div class="tile image" id="About">
@@ -76,19 +100,34 @@
 
                     <div class="tile double image-slider" data-role="tile-slider" data-param-period="5000" data-param-direction="down">
                         <div class="tile-content">
-                            <img src="/images/Image1.jpg" alt="">
+                            <img src="/Gallery/Small/1.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image2.jpg" alt="">
+                            <img src="/Gallery/Small/2.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image3.jpg" alt="">
+                            <img src="/Gallery/Small/3.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image4.jpg" alt="">
+                            <img src="/Gallery/Small/4.jpg" alt="">
                         </div>
                         <div class="tile-content">
-                            <img src="/images/Image5.jpg" alt="">
+                            <img src="/Gallery/Small/5.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Small/6.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Small/7.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Small/8.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Small/9.jpg" alt="">
+                        </div>
+                        <div class="tile-content">
+                            <img src="/Gallery/Small/10.jpg" alt="">
                         </div>
                         <div class="brand">
                             <div class="badge"></div>
@@ -101,9 +140,9 @@
                 
                 <div class="tile-group tile-drag">
                     
-                    <div class="tile double  bg-color-yellow">
+                    <div class="tile double  bg-color-yellow" id="Investor">
                         <div class="tile-content fg-color-blueDark">
-                            <h2>Investors section</h2>
+                            <h2>Investors Dashboard</h2>
                             <h5>Together, we grow</h5>
                             <p>
                                 click for more details.                        

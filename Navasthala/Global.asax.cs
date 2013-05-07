@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Navasthala.ControllerRegistry;
+using WebMatrix.WebData;
 
 namespace Navasthala
 {
@@ -30,7 +32,11 @@ namespace Navasthala
 
         private void InitialiseDataBase()
         {
-            WebMatrix.WebData.WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            var migrator = new DbMigrator(new DataLayer.Migrations.Configuration());
+            migrator.Update();
+           
+            if (!WebSecurity.Initialized)
+            WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
         }
 
         private void Register()

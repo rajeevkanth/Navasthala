@@ -8,15 +8,16 @@ namespace DataLayer.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Models.NavasthalaContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Models.NavasthalaContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Models.NavasthalaContext context)
         {
+            if(!WebSecurity.Initialized)
             WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
 
             var roles = (SimpleRoleProvider)Roles.Provider;
@@ -52,10 +53,16 @@ namespace DataLayer.Migrations
                 membership.CreateUserAndAccount("Vidya", "Admin123");
             }
 
+            if (membership.GetUser("Fanboy", false) == null)
+            {
+                membership.CreateUserAndAccount("Fanboy", "Admin123");
+            }
+
             if (!roles.GetRolesForUser("Rajeev").Contains("Admin"))
             {
                 roles.AddUsersToRoles(new []{"Rajeev"},new[]{"Admin"} );
             }
+            
 
             if (!roles.GetRolesForUser("Vikram").Contains("Admin"))
             {

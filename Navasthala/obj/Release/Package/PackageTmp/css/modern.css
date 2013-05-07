@@ -7293,3 +7293,99 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .datepicker {
   position: relative;
 }
+
+#login-form input {
+	display: block;
+	width: 200px;
+	height: 25px;
+	height: 15px\0/;
+	text-align: left;
+	border: 0;
+	padding: 5px 10px;
+	padding: 10px 10px\0/;
+	margin-bottom: 20px;
+    margin-top: 10px;
+	background-color: #2c2c2c;
+	color: #818b91;
+	font-size: 12px;
+}
+
+    #loginForm input[type="submit"],
+    #loginForm input[type="button"],
+    #loginForm button {
+        width: auto;
+    }
+
+    #login-form input[type="checkbox"] 
+    {
+        width: auto;    
+    }
+
+#login-form textarea {
+	display: block;
+	border: none;
+	width: 400px;
+	height: 123px;
+	clear: both;
+	border: 0;
+	padding: 10px;
+	background-color: #2c2c2c;
+	margin: 0;
+	color: #818b91;
+	font-size: 12px;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+#login-form textarea:hover {
+	border:none;
+}
+
+#login-form input#submit-button {
+	clear:both;
+	margin:0px;
+	text-align: center;
+	margin: 0px 5px 0 0;
+	width: auto;
+	background:radial-gradient();
+	color:whitesmoke;
+	position: relative;
+	z-index: 9999;
+	padding: 0;
+	height: 32px;
+	padding-bottom: 2px;
+	width: 120px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#login-form p { 
+	position: relative; 
+	margin: 0; 
+	padding: 0; 
+}
+
+#login-form p label { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	line-height: 35px;
+	padding: 0 0 0 10px;
+	font-size: 12px;
+}
+input#submit-button {
+	clear:both;
+	float:none;
+	margin:0px;
+	text-align: center;
+	margin: -34px 10px 0 0;
+	width: auto;
+	position: relative;
+	z-index: 9999;
+	background: transparent url(~/Images/submit.png) no-repeat;
+	color: #1f1f1f;
+	padding: 5px 12px;
+	font-size: 14px;
+	height: 32px;
+	width: 120px;
+	cursor: pointer;
+}
