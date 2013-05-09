@@ -57,11 +57,21 @@
       <DependentUpon>201305062241345_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AddressType.cs" />
     <Compile Include="Models\ExpressionOfInterest.cs" />
+    <Compile Include="Models\Investment.cs" />
+    <Compile Include="Models\Mapping\AddressMap.cs" />
+    <Compile Include="Models\Mapping\AddressTypeMap.cs" />
     <Compile Include="Models\Mapping\ExpressionOfInterestMap.cs" />
+    <Compile Include="Models\Mapping\InvestmentMap.cs" />
+    <Compile Include="Models\Mapping\PhoneMap.cs" />
+    <Compile Include="Models\Mapping\PhoneTypeMap.cs" />
     <Compile Include="Models\Mapping\ProductMap.cs" />
     <Compile Include="Models\Mapping\UpcomingProjectMap.cs" />
     <Compile Include="Models\NavasthalaContext.cs" />
+    <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\PhoneType.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UpcomingProject.cs" />
     <Compile Include="Models\UserProfile.cs" />

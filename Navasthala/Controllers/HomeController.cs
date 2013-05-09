@@ -27,5 +27,19 @@ namespace Navasthala.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public ActionResult User()
+        {
+            if (base.User.IsInRole("Admin"))
+            {
+                return View("AdminView");
+            }
+            
+            if(base.User.IsInRole("Investor"))
+                return RedirectToAction("Index", "Investor");
+
+            return View("UserView");
+        }
     }
 }

@@ -32,6 +32,14 @@
                 });
             });
             
+            $('#User').mousedown(function (e) {
+                e.stopPropagation();
+                $('.page-region').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("User","Home")";
+                });
+            });
+            
             $('#logoff').mousedown(function (e) {
                 e.stopPropagation();
                 $('.page-region').hide("fade", 500, function () {
@@ -88,9 +96,6 @@
                 </div>
                     </div>
 
-        
-
-                    
                 </div>
 
             </div>
@@ -104,13 +109,4 @@
         
             
     </body>
-    
-
-   @*    <body>
-        <div>
-            @RenderSection("scripts", required: false) 
-            @RenderBody()
-        </div>
-    </body>*@
-
 </html>

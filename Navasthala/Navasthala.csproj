@@ -259,15 +259,15 @@
     <Content Include="fonts\iconFont.eot" />
     <Content Include="fonts\iconFont.ttf" />
     <Content Include="fonts\iconFont.woff" />
-    <Content Include="Images\about-us.jpg" />
-    <Content Include="Images\contact-us.jpg" />
-    <Content Include="Images\Image1.jpg" />
-    <Content Include="Images\Image2.jpg" />
-    <Content Include="Images\image3.jpg" />
-    <Content Include="Images\Image4.jpg" />
-    <Content Include="Images\Image5.jpg" />
-    <Content Include="Images\Logo.png" />
-    <Content Include="Images\submit.png" />
+    <Content Include="images\adduser.png" />
+    <Content Include="images\deleteuser.png" />
+    <Content Include="images\Logo.png" />
+    <Content Include="images\manageinvestor.jpg" />
+    <Content Include="images\newsletter.png" />
+    <Content Include="images\preloader-w8-cycle-black.gif" />
+    <Content Include="images\preloader-w8-cycle-white.gif" />
+    <Content Include="images\preloader-w8-line-black.gif" />
+    <Content Include="images\preloader-w8-line-white.gif" />
     <Content Include="js\assets\github.info.js" />
     <Content Include="js\assets\google-analytics.js" />
     <Content Include="js\assets\jquery-1.8.2.min.js" />
@@ -357,10 +357,6 @@
     <Content Include="css\modern-responsive.css" />
     <Content Include="css\modern.css" />
     <Content Include="css\theme-dark.css" />
-    <Content Include="Images\preloader-w8-cycle-black.gif" />
-    <Content Include="Images\preloader-w8-cycle-white.gif" />
-    <Content Include="Images\preloader-w8-line-black.gif" />
-    <Content Include="Images\preloader-w8-line-white.gif" />
     <Content Include="javascript\accordion.js" />
     <Content Include="javascript\buttonset.js" />
     <Content Include="javascript\calendar.js" />
@@ -401,19 +397,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -435,6 +418,8 @@
     <Content Include="Views\Investor\InvestorMainView.cshtml" />
     <Content Include="Views\Home\UnAuthorisedView.cshtml" />
     <Content Include="Views\Gallery\Gallery.cshtml" />
+    <Content Include="Views\Home\AdminView.cshtml" />
+    <Content Include="Views\Home\UserView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

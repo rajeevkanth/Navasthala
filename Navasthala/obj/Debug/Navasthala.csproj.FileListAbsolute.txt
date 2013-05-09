@@ -1,4 +1,3 @@
-C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Navasthala.pdb
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Antlr3.Runtime.dll
@@ -50,5 +49,6 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OAuth.Consumer.x
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OAuth.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.xml
 C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.pdb

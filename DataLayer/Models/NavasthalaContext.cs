@@ -16,6 +16,8 @@ namespace DataLayer.Models
         }
 
         public DbSet<ExpressionOfInterest> ExpressionOfInterests { get; set; }
+        public DbSet<AddressType> AddressTypes { get; set; }
+        public DbSet<PhoneType> PhoneTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<UpcomingProject> UpcomingProjects { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
@@ -25,6 +27,11 @@ namespace DataLayer.Models
             modelBuilder.Configurations.Add(new ExpressionOfInterestMap());
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new UpcomingProjectMap());
+            modelBuilder.Configurations.Add(new AddressMap());
+            modelBuilder.Configurations.Add(new AddressTypeMap());
+            modelBuilder.Configurations.Add(new PhoneMap());
+            modelBuilder.Configurations.Add(new PhoneTypeMap());
+
 
         }
     }

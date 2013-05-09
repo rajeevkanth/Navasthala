@@ -1,18 +1,16 @@
 using System.Web.Security;
+using DataLayer.Models;
 using WebMatrix.WebData;
+using System.Linq;
+using System.Data.Entity.Migrations;
 
 namespace DataLayer.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     public sealed class Configuration : DbMigrationsConfiguration<Models.NavasthalaContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Models.NavasthalaContext context)
@@ -22,6 +20,28 @@ namespace DataLayer.Migrations
 
             var roles = (SimpleRoleProvider)Roles.Provider;
             var membership = (SimpleMembershipProvider) Membership.Provider;
+
+
+            if (!context.AddressTypes.Any(p => p.Type == "Home"))
+            {
+                context.AddressTypes.Add(new AddressType {Type = "Home"});
+            }
+
+            if (!context.AddressTypes.Any(p => p.Type == "Work"))
+            {
+                context.AddressTypes.Add(new AddressType { Type = "Work" });
+            }
+
+            if (!context.PhoneTypes.Any(p => p.Type == "Mobile"))
+            {
+                context.PhoneTypes.Add(new PhoneType {Type = "Mobile"});
+            }
+
+            if (!context.PhoneTypes.Any(p => p.Type == "Landline"))
+            {
+                context.PhoneTypes.Add(new PhoneType { Type = "Landline" });
+            }
+
 
             if (!roles.RoleExists("Admin"))
             {
@@ -78,6 +98,7 @@ namespace DataLayer.Migrations
             {
                 roles.AddUsersToRoles(new[] { "Vidya" }, new[] { "Investor" });
             }
+            context.SaveChanges();
         }
     }
 }
