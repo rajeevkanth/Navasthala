@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Web.Security;
 using DataLayer.Models;
 using WebMatrix.WebData;
@@ -13,7 +14,7 @@ namespace DataLayer.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(Models.NavasthalaContext context)
+        protected override void Seed(NavasthalaContext context)
         {
             if(!WebSecurity.Initialized)
             WebSecurity.InitializeDatabaseConnection("NavasthalaContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
@@ -55,27 +56,36 @@ namespace DataLayer.Migrations
 
             if (membership.GetUser("Rajeev", false) == null)
             {
-                membership.CreateUserAndAccount("Rajeev", "Admin123");
+                //membership.CreateUserAndAccount("Rajeev", "Admin123", new Dictionary<string, object> { new { "Email", "myemail@gmail.com" }});
+                WebSecurity.CreateUserAndAccount("Rajeev", "Admin123", new {Email = "myemail@gmail.com"});
             }
 
             if (membership.GetUser("Vikram", false) == null)
             {
-                membership.CreateUserAndAccount("Vikram", "Admin123");
+                //membership.CreateUserAndAccount("Vikram", "Admin123");
+                WebSecurity.CreateUserAndAccount("Vikram", "Admin123", new { Email = "myemail@gmail.com" });
+           
             }
 
             if (membership.GetUser("Aparna", false) == null)
             {
-                membership.CreateUserAndAccount("Aparna", "Admin123");
+                //membership.CreateUserAndAccount("Aparna", "Admin123");
+                WebSecurity.CreateUserAndAccount("Aparna", "Admin123", new { Email = "myemail@gmail.com" });
+           
             }
 
             if (membership.GetUser("Vidya", false) == null)
             {
-                membership.CreateUserAndAccount("Vidya", "Admin123");
+                //membership.CreateUserAndAccount("Vidya", "Admin123");
+                WebSecurity.CreateUserAndAccount("Vidya", "Admin123", new { Email = "myemail@gmail.com" });
+           
             }
 
             if (membership.GetUser("Fanboy", false) == null)
             {
-                membership.CreateUserAndAccount("Fanboy", "Admin123");
+                //membership.CreateUserAndAccount("Fanboy", "Admin123");
+                WebSecurity.CreateUserAndAccount("Fanboy", "Admin123", new { Email = "myemail@gmail.com" });
+           
             }
 
             if (!roles.GetRolesForUser("Rajeev").Contains("Admin"))
@@ -98,6 +108,8 @@ namespace DataLayer.Migrations
             {
                 roles.AddUsersToRoles(new[] { "Vidya" }, new[] { "Investor" });
             }
+
+
             context.SaveChanges();
         }
     }

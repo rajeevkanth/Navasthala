@@ -29,14 +29,14 @@ namespace Navasthala.Controllers
         }
 
         [Authorize]
-        public ActionResult User()
+        public ActionResult CurrentUser()
         {
-            if (base.User.IsInRole("Admin"))
+            if (User.IsInRole("Admin"))
             {
-                return View("AdminView");
+                return RedirectToAction("DashBoard","Admin");
             }
             
-            if(base.User.IsInRole("Investor"))
+            if(User.IsInRole("Investor"))
                 return RedirectToAction("Index", "Investor");
 
             return View("UserView");

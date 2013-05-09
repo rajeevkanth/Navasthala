@@ -167,6 +167,7 @@
     <Compile Include="BootStrapper\BootStrapper.cs" />
     <Compile Include="ControllerRegistry\ControllerRegistry.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvestorController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -418,8 +419,9 @@
     <Content Include="Views\Investor\InvestorMainView.cshtml" />
     <Content Include="Views\Home\UnAuthorisedView.cshtml" />
     <Content Include="Views\Gallery\Gallery.cshtml" />
-    <Content Include="Views\Home\AdminView.cshtml" />
+    <Content Include="Views\Admin\DashBoard.cshtml" />
     <Content Include="Views\Home\UserView.cshtml" />
+    <Content Include="Views\Admin\UserDetailsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,6 +22,7 @@ namespace DataLayer.Models
         public DbSet<UpcomingProject> UpcomingProjects { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ExpressionOfInterestMap());

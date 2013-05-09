@@ -1,6 +1,19 @@
-﻿@{
+﻿k@{
     ViewBag.Title = "AdminView";
 }
+    <script type="text/javascript">
+        $(function ()
+        {
+            $('#Investor').mousedown(function (e) {
+                e.stopPropagation();
+                $('.page-region-content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("Investors","Admin")";
+                });
+            });
+            
+        });
+    </script>
 
 <div class="page-region-content tiles" id="content">
     
@@ -15,7 +28,7 @@
         </div>
     </div>
     
-    <div class="tile-group tile-drag">
+    <div class="tile-group tile-drag" id="Investor">
         <div class="tile icon  bg-color-green">
             <div class="tile-content">
                 <img src="/images/manageinvestor.jpg"/>
