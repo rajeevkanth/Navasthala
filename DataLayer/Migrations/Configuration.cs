@@ -57,34 +57,34 @@ namespace DataLayer.Migrations
             if (membership.GetUser("Rajeev", false) == null)
             {
                 //membership.CreateUserAndAccount("Rajeev", "Admin123", new Dictionary<string, object> { new { "Email", "myemail@gmail.com" }});
-                WebSecurity.CreateUserAndAccount("Rajeev", "Admin123", new {Email = "myemail@gmail.com"});
+                WebSecurity.CreateUserAndAccount("Rajeev", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True" });
             }
 
             if (membership.GetUser("Vikram", false) == null)
             {
                 //membership.CreateUserAndAccount("Vikram", "Admin123");
-                WebSecurity.CreateUserAndAccount("Vikram", "Admin123", new { Email = "myemail@gmail.com" });
+                WebSecurity.CreateUserAndAccount("Vikram", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True" });
            
             }
 
             if (membership.GetUser("Aparna", false) == null)
             {
                 //membership.CreateUserAndAccount("Aparna", "Admin123");
-                WebSecurity.CreateUserAndAccount("Aparna", "Admin123", new { Email = "myemail@gmail.com" });
+                WebSecurity.CreateUserAndAccount("Aparna", "Admin123", new { Email = "myemail@gmail.com",IsActive="True",LastName="Gudaloor" });
            
             }
 
             if (membership.GetUser("Vidya", false) == null)
             {
                 //membership.CreateUserAndAccount("Vidya", "Admin123");
-                WebSecurity.CreateUserAndAccount("Vidya", "Admin123", new { Email = "myemail@gmail.com" });
+                WebSecurity.CreateUserAndAccount("Vidya", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True", LastName = "RamMohan" });
            
             }
 
             if (membership.GetUser("Fanboy", false) == null)
             {
                 //membership.CreateUserAndAccount("Fanboy", "Admin123");
-                WebSecurity.CreateUserAndAccount("Fanboy", "Admin123", new { Email = "myemail@gmail.com" });
+                WebSecurity.CreateUserAndAccount("Fanboy", "Admin123", new { Email = "myemail@gmail.com",IsActive="True" });
            
             }
 

@@ -21,6 +21,7 @@ namespace DataLayer.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<UpcomingProject> UpcomingProjects { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Investment> Investments { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

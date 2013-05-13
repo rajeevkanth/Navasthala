@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="ViewModel\InvestorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Style\style.css" />
@@ -233,6 +234,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\ui.jqgrid.css" />
     <Content Include="css\Gallery\all.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\iconFont.svg" />
@@ -260,6 +262,7 @@
     <Content Include="fonts\iconFont.eot" />
     <Content Include="fonts\iconFont.ttf" />
     <Content Include="fonts\iconFont.woff" />
+    <Content Include="images\about-us.jpg" />
     <Content Include="images\adduser.png" />
     <Content Include="images\deleteuser.png" />
     <Content Include="images\Logo.png" />
@@ -269,6 +272,24 @@
     <Content Include="images\preloader-w8-cycle-white.gif" />
     <Content Include="images\preloader-w8-line-black.gif" />
     <Content Include="images\preloader-w8-line-white.gif" />
+    <Content Include="Jqgrid\css\ui.jqgrid.css" />
+    <Content Include="Jqgrid\Scripts\grid.locale-en.js" />
+    <None Include="Jqgrid\Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Jqgrid\Scripts\jquery-1.4.1.js" />
+    <Content Include="Jqgrid\Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Jqgrid\Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Jqgrid\Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Jqgrid\Scripts\jquery.maskedinput-1.2.2.js" />
+    <Content Include="Jqgrid\Scripts\jquery.maskedinput-1.2.2.min.js" />
+    <None Include="Jqgrid\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Jqgrid\Scripts\jquery.validate.js" />
+    <Content Include="Jqgrid\Scripts\jquery.validate.min.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftAjax.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Jqgrid\Scripts\MicrosoftMvcValidation.js" />
     <Content Include="js\assets\github.info.js" />
     <Content Include="js\assets\google-analytics.js" />
     <Content Include="js\assets\jquery-1.8.2.min.js" />
