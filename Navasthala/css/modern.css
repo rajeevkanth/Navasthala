@@ -4099,10 +4099,10 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   padding-bottom: 5px;
   padding-top: 10px;
   padding-left: 5px;
-  border-bottom: 1px #ddd solid;
-  border-right: 1px #ddd solid;
-  border-left: 1px transparent solid;
-  border-top: 1px transparent solid;
+  border-bottom: 0px #ddd solid;
+  border-right: 0px #ddd solid;
+  border-left: 0px transparent solid;
+  border-top: 0px transparent solid;
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 11pt;
@@ -7390,3 +7390,121 @@ input#submit-button {
 	cursor: pointer;
 }
 
+#search-form input {
+	display: block;
+	width: 150px;
+	height: 25px;
+	height: 15px;
+	text-align: left;
+	border: 0;
+	padding: 5px 10px;
+	padding: 10px 10px;
+	margin-bottom: 20px;
+    margin-top: 10px;
+	background-color: #2c2c2c;
+	color: #818b91;
+	font-size: 12px;
+}
+#search-form select {
+
+	display: block;
+	width: 150px;
+	height: 100px;
+	height: 15px;
+	text-align: left;
+	border: 0;
+	padding: 0px 0px;
+	margin-bottom: 20px;
+    margin-top: 10px;
+	background-color: #2c2c2c;
+	color: #818b91;
+	font-size: 12px;
+}
+
+#search-form input#submit-button {
+	clear:both;
+	margin:0px;
+	text-align: center;
+	margin: 0px 5px 0 0;
+	width: auto;
+	background:radial-gradient();
+	color:whitesmoke;
+	position: relative;
+	z-index: 9999;
+	padding: 0;
+	height: 32px;
+	padding-bottom: 2px;
+	width: 120px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+#search-form input#search-button {
+	clear:both;
+	margin:0px;
+	text-align: center;
+	margin: 0px 5px 0 0;
+	width: auto;
+	background:radial-gradient();
+	color:whitesmoke;
+	position: relative;
+	z-index: 9999;
+	padding: 0;
+	height: 32px;
+	padding-bottom: 2px;
+	width: 120px;
+	font-size: 14px;
+	cursor: pointer;
+}
+#search-form textarea {
+	display: block;
+	border: none;
+	width: 400px;
+	height: 123px;
+	clear: both;
+	border: 0;
+	padding: 10px;
+	background-color: #2c2c2c;
+	margin: 0;
+	color: #818b91;
+	font-size: 12px;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+#search-form textarea:hover {
+	border:none;
+}
+#search-form button {
+	clear:both;
+	margin:0px;
+	text-align: center;
+	margin: 0px 5px 0 0;
+	width: auto;
+	background:radial-gradient();
+	color:whitesmoke;
+	position: relative;
+	z-index: 9999;
+	padding: 0;
+	height: 32px;
+	padding-bottom: 2px;
+	width: 120px;
+	font-size: 14px;
+	cursor: pointer;
+}
+#search-form p { 
+	position: relative; 
+	margin: 0; 
+	padding: 0; 
+}
+#search-form p label { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	line-height: 35px;
+	padding: 0 0 0 10px;
+	font-size: 12px;
+}
+
+#search-form table thead tr td {
+    width: 200px;
+    border:0px;
+}

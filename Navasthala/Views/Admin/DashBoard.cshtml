@@ -21,6 +21,14 @@
                 });
             });
             
+            $('#Manage').mousedown(function (e) {
+                e.stopPropagation();
+                $('.page-region-content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("ManageUsers","Admin")";
+                });
+            });
+            
         });
     </script>
 
@@ -48,25 +56,15 @@
         </div>
     </div>
     
-    <div class="tile-group tile-drag">
+    <div class="tile-group tile-drag" id="Manage">
         <div class="tile icon bg-color-orange">
             <div class="tile-content">
                 <img src="/images/adduser.png"/>
             </div>
             <div class="brand">
-                <div class="name">Add user</div>
+                <div class="name">Manage user</div>
             </div>
         </div>
     </div>
     
-    <div class="tile-group tile-drag">
-    <div class="tile icon">
-        <div class="tile-content">
-            <img src="/images/deleteuser.png"/>
-        </div>
-        <div class="brand">
-            <div class="name">Block user</div>
-        </div>
-    </div>
-    </div>
 </div>

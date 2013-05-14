@@ -177,6 +177,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="ViewModel\InvestorViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Style\style.css" />
@@ -234,7 +235,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Content\ui.jqgrid.css" />
     <Content Include="css\Gallery\all.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\iconFont.svg" />
@@ -272,6 +272,7 @@
     <Content Include="images\preloader-w8-cycle-white.gif" />
     <Content Include="images\preloader-w8-line-black.gif" />
     <Content Include="images\preloader-w8-line-white.gif" />
+    <Content Include="Jqgrid\css\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="Jqgrid\css\ui.jqgrid.css" />
     <Content Include="Jqgrid\Scripts\grid.locale-en.js" />
     <None Include="Jqgrid\Scripts\jquery-1.4.1-vsdoc.js" />
@@ -442,7 +443,8 @@
     <Content Include="Views\Gallery\Gallery.cshtml" />
     <Content Include="Views\Admin\DashBoard.cshtml" />
     <Content Include="Views\Home\UserView.cshtml" />
-    <Content Include="Views\Admin\UserDetailsView.cshtml" />
+    <Content Include="Views\Admin\InvestorDetailsView.cshtml" />
+    <Content Include="Views\Admin\ManageUsersView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

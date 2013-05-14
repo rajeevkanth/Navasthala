@@ -7,7 +7,7 @@ using System.Data.Entity.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<Models.NavasthalaContext>
+    public sealed class Configuration : DbMigrationsConfiguration<NavasthalaContext>
     {
         public Configuration()
         {

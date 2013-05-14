@@ -23,7 +23,6 @@ namespace DataLayer.Models
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Investment> Investments { get; set; }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ExpressionOfInterestMap());

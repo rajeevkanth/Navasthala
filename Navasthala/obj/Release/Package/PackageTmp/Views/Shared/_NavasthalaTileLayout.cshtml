@@ -13,14 +13,8 @@
         <link href="/css/modern-responsive.css" rel="stylesheet">
          <link href="/Content/Style/style.css" rel="stylesheet">
     </head>
-    <script src="/Scripts/jquery-1.9.1.js"></script>
-    <script src="/Scripts/jquery-ui-1.8.20.js"></script>
-    <script src="~/js/assets/google-analytics.js"></script>
-    <script src="/js/assets/jquery.mousewheel.min.js"></script>
-    <script src="/js/assets/github.info.js"></script>
-    <script src="/js/modern/tile-slider.js"></script>
-    <script src="/js/modern/start-menu.js"></script>
-    <script src="/js/modern/tile-drag.js"></script>
+        <script src="/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Scripts/jquery-ui-1.8.20.js"></script> 
     <script type="text/javascript">
         $(function ()
         {
@@ -36,7 +30,7 @@
                 e.stopPropagation();
                 $('.page-region').hide("fade", 500, function () {
 
-                    window.location.href = "@Url.Action("User","Home")";
+                    window.location.href = "@Url.Action("CurrentUser","Home")";
                 });
             });
             
@@ -48,13 +42,12 @@
                  });
             });
 
-            $('#Home').mousedown(function ()
-            {
+            $('#Home').mousedown(function (e) {
+                e.stopPropagation();
                 $('.page-region').hide("fade", 500, function () {
-                    
                     window.location.href = "@Url.Action("Index","Home")";
-             });
-            });
+                });
+           });
             
         });
     </script>

@@ -4,7 +4,9 @@ namespace Navasthala.ViewModel
 {
     public class InvestorViewModel
     {
-        public int InvestorId { get; set; }
+        public int InvestmentId { get; set; }
+
+        public int UserId { get; set; }
 
         public string UserName { get; set; }
 
