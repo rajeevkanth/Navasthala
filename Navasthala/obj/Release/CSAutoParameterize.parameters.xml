@@ -6,4 +6,7 @@
   <parameter name="NavasthalaContext-Web.config Connection String" description="NavasthalaContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=RAJEEVMOHAN8F26;Initial Catalog=Navasthala;Integrated Security=True;MultipleActiveResultSets=True" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="C:\\Projects\\Core\\Tiles\\Navasthala\\Navasthala\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NavasthalaContext']/@connectionString" />
   </parameter>
+  <parameter name="NavasthalaContext_DatabasePublish-Web.config Connection String" description="NavasthalaContext_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="NavasthalaContext_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\Core\\Tiles\\Navasthala\\Navasthala\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NavasthalaContext_DatabasePublish']/@connectionString" />
+  </parameter>
 </parameters>

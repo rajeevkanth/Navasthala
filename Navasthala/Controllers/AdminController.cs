@@ -13,7 +13,6 @@ namespace Navasthala.Controllers
     {
         private readonly NavasthalaContext _context;
 
-        private UserViewModel _vm;
 
         public AdminController(NavasthalaContext context)
         {
@@ -32,16 +31,7 @@ namespace Navasthala.Controllers
         {
              SetRoles();  
              var vm = new UserViewModel();
-            _vm = vm;
             return View("ManageUsersView",vm);
-        }
-
-        [HttpPost]
-        public ActionResult ManageUsers(UserViewModel vm)
-        {
-            SetRoles();
-            _vm = vm;
-            return View("ManageUsersView");
         }
 
         private void SetRoles()
@@ -60,11 +50,11 @@ namespace Navasthala.Controllers
 
         public ActionResult ListInvestors(string sidx, string sord, int page, int rows)
         {
-           var roles = (SimpleRoleProvider)Roles.Provider;
-        
-            var results = (from user in _context.UserProfiles.Include("Investments").AsEnumerable()
-                               where user.IsActive && roles.GetRolesForUser(user.UserName).Contains("Investor")
-                               select new{User=user,Investment=user.Investments});
+           var roleProvider = (SimpleRoleProvider)Roles.Provider;
+
+            var results = (from user in _context.UserProfiles.Include("Investments").Where(p => p.IsActive).AsEnumerable()
+                           where roleProvider.GetRolesForUser(user.UserName).Contains("Investor")
+                           select new {User = user, Investment = user.Investments});
 
             var investors = new List<InvestorViewModel>();
 
@@ -183,38 +173,38 @@ namespace Navasthala.Controllers
             return null;
         }
 
-        public ActionResult GetUsers(string sidx, string sord, int page, int rows)
+        public ActionResult GetUsers(string sidx, string sord, int page, int rows, bool _search, string searchField, string searchOper, string searchString)
+        //public ActionResult GetUsers(UserViewModel vm)
         {
-            
             var roleProvider = (SimpleRoleProvider)Roles.Provider;
             var users = _context.UserProfiles.Where(p=>p.UserName != User.Identity.Name).AsEnumerable();
 
-            //if (string.IsNullOrEmpty(_vm.UserName))
-            //{
-            //    users = users.Where(p => p.UserName.Contains(_vm.UserName));
-            //}
+            if (_search)
+            {
+                switch (searchField)
+                {
+                    case "UserName":
+                        users = users.Where(p => p.UserName.ToLower().Contains(searchString.ToLower()));
+                        break;
 
-            //if (string.IsNullOrEmpty(_vm.LastName))
-            //{
-            //    users = users.Where(p => p.LastName.Contains(_vm.LastName));
-            //}
+                    case "LastName":
+                        users = users.Where(p => p.LastName!= null && p.LastName.ToLower().Contains(searchString.ToLower()));
+                        break;
 
-            //if (string.IsNullOrEmpty(_vm.FirstName))
-            //{
-            //    users = users.Where(p => p.FirstName.Contains(_vm.FirstName));
-            //}
-            
-            //if (_vm.DateOfBirth.HasValue)
-            //{
-            //    users = users.Where(p => p.DateOfBirth.HasValue && p.DateOfBirth.Value.ToShortDateString().Equals(_vm.DateOfBirth.Value.ToShortDateString()));
-            //}
-            
-            //if (string.IsNullOrEmpty(_vm.Email))
-            //{
-            //    users = users.Where(p => p.Email.Contains(_vm.Email));
-            //}
+                    case "FirstName":
+                        users = users.Where(p => p.FirstName!= null && p.FirstName.ToLower().Contains(searchString.ToLower()));
+                        break;
 
-            var filteredUsers= users.Select(p => new UserViewModel
+                    case "Email":
+                        users = users.Where(p => p.Email!= null && p.Email.ToLower().Contains(searchString.ToLower()));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+           var filteredUsers= users.Select(p => new UserViewModel
                 {
                     FirstName = p.UserName,
                     LastName = p.LastName,
@@ -225,10 +215,11 @@ namespace Navasthala.Controllers
                     Role = roleProvider.GetRolesForUser(p.UserName).FirstOrDefault()
                 });
 
-            var pageIndex = Convert.ToInt32(page) - 1;
-            var pageSize = rows;
-            var totalRecords = users.Count();
-            var totalPages = (int)Math.Ceiling((float)totalRecords / (float)pageSize);
+           var pageIndex = Convert.ToInt32(page) - 1;
+           var pageSize = rows;
+           var totalRecords = users.Count();
+           var totalPages = (int)Math.Ceiling((float)totalRecords / (float)pageSize);
+
 
             var jsonData = new
             {

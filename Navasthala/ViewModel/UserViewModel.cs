@@ -6,6 +6,11 @@ namespace Navasthala.ViewModel
 {
     public class UserViewModel
     {
+        public UserViewModel()
+        {
+            Search = new SearchModel();
+        }
+
         public SearchModel Search { get; set; }
         public IList<string> Roles { get; set; }
 
