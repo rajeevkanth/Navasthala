@@ -1,9 +1,9 @@
 ﻿@{
     ViewBag.Title = "Navasthala Innovations";
 }
-
+<head>
+    <title>Index Page</title>
 <script src="/Scripts/jquery-ui-1.8.20.js"></script>
-    <script src="/Scripts/jquery-1.9.1.js"></script>
     <script src="/Scripts/jquery-ui-1.8.20.js"></script>
     <script src="~/js/assets/google-analytics.js"></script>
     <script src="/js/assets/jquery.mousewheel.min.js"></script>
@@ -50,13 +50,22 @@
                 window.location.href = "@Url.Action("Gallery","Gallery")";
                 });
 
-                    });
+        });
+        
+        $('#Products').mouseup(function () {
+
+            $('#content').hide("fade", 500, function () {
+
+                window.location.href = "@Url.Action("Bhajras","Product")";
+            });
+
+                });
 
            
         });
         
     </script>
-
+    </head>
 
 <div class="page-region-content tiles" id="content">
                 <div class="tile-group tile-drag">
@@ -173,7 +182,7 @@
                         </div>
                     </div>
 
-                    <div class="tile double  bg-color-orangeDark">
+                    <div class="tile double  bg-color-orangeDark" id="Products">
                         <div class="tile-content fg-color-blueDark">
                             <h2>Products</h2>
                             <h5>Innovation at it's best</h5>

@@ -152,8 +152,9 @@
 
 
 .contact-right {
-	width: 420px;
-	float: right;
+	width: 300px;
+	float:left;
+    padding-left: 100px;
 }
 
 

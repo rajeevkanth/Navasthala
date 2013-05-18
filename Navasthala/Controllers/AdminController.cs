@@ -13,7 +13,6 @@ namespace Navasthala.Controllers
     {
         private readonly NavasthalaContext _context;
 
-
         public AdminController(NavasthalaContext context)
         {
             _context = context;
@@ -46,6 +45,11 @@ namespace Navasthala.Controllers
         public ActionResult Investors()
         {
             return View("InvestorDetailsView");
+        }
+
+        public ActionResult ExpressionOfInterest()
+        {
+            return View("EOIView");
         }
 
         public ActionResult ListInvestors(string sidx, string sord, int page, int rows)
@@ -174,7 +178,6 @@ namespace Navasthala.Controllers
         }
 
         public ActionResult GetUsers(string sidx, string sord, int page, int rows, bool _search, string searchField, string searchOper, string searchString)
-        //public ActionResult GetUsers(UserViewModel vm)
         {
             var roleProvider = (SimpleRoleProvider)Roles.Provider;
             var users = _context.UserProfiles.Where(p=>p.UserName != User.Identity.Name).AsEnumerable();
@@ -248,7 +251,72 @@ namespace Navasthala.Controllers
       
         }
 
-       
+        public ActionResult GetEoi(string sidx, string sord, int page, int rows, bool _search, string searchField, string searchOper, string searchString)
+        {
+            var eoi = _context.ExpressionOfInterests.AsEnumerable();
+            if (_search)
+            {
+                switch (searchField)
+                {
+                    case "Name":
+                        eoi = eoi.Where(p => p.Name != null && p.Name.ToLower().Equals(searchString.ToLower()));
+                        break;
+
+                    case "Phone":
+                        eoi = eoi.Where(p => p.Phone != null && p.Phone.ToLower().Equals(searchString.ToLower()));
+                        break;
+
+                    case "Email":
+                        eoi = eoi.Where(p => p.Email != null && p.Email.ToLower().Equals(searchString.ToLower()));
+                        break;
+
+                    case "Date":
+                        eoi = eoi.Where(p => p.Date != null && p.Date.Value.ToShortDateString().Equals(searchString.ToLower()));
+                        break;
+                   
+                }
+            }
+
+            var filteredEoi = eoi.Select(p => new ContactViewModel
+            {
+                Name = p.Name,
+                Phone = p.Phone,
+                Email = p.Email,
+                Message = p.Message,
+                Date = p.Date,
+                Id=p.Id
+            });
+
+            var pageIndex = Convert.ToInt32(page) - 1;
+            var pageSize = rows;
+            var totalRecords = eoi.Count();
+            var totalPages = (int)Math.Ceiling((float)totalRecords / (float)pageSize);
+
+
+            var jsonData = new
+            {
+                total = totalPages,
+                page = page,
+                records = totalRecords,
+                rows = (
+                    from usr in filteredEoi
+                    select new
+                    {
+                        i = usr.Id,
+                        cell = new object[] {
+                            usr.Name, 
+                            usr.Email,
+                            usr.Phone,
+                            usr.Date.HasValue? usr.Date.Value.ToShortDateString():string.Empty,
+                            usr.Message
+                        }
+                    }).ToArray()
+            };
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+
+        }
+   
 
     }
 }

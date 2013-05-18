@@ -1,0 +1,82 @@
+﻿
+
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Expression of interests</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="/Jqgrid/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+    <script src="/Jqgrid/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.maskedinput-1.2.2.min.js" type="text/javascript"></script>
+
+</head>
+ 
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            $("#list").jqGrid({
+                url: "@Url.Action("GetEoi","Admin")",
+                datatype: 'json',
+                mtype: 'GET',
+                colNames: ['Name', 'E-mail', 'Phone', 'Date', 'Message'],
+                colModel: [
+                    { name: 'Name', index: 'Name', width: 100, align: 'left', editable: false, edittype: 'text', formoptions: { elmsuffix: ' *' } },
+                    { name: 'Email', index: 'Email', width: 100, align: 'left', formatter: 'mail', editable: false,formoptions: { elmsuffix: ' *' } },
+                    { name: 'Phone', index: 'Phone', width: 100, align: 'left', formatter: 'phone', editable: false, formoptions: { elmsuffix: ' *' } },
+                    { name: 'Date', index: 'Date', width: 75, align: 'left', formoptions: { elmsuffix: ' *' } },
+                    { name: 'Message', index: 'Message', width: 250, align: 'left',editable:false, formoptions: { elmsuffix: ' *' } }
+
+                   
+                ],
+
+                pager: $('#listPager'),
+                //rowNum: 1000,
+                //rowList: [1000],
+                sortname: 'Date',
+                sortorder: "desc",
+                viewrecords: true,
+                imgpath: '/Content/Themes/Redmond/Images',
+                caption: 'Expression of interest',
+                autowidth: true
+            }).navGrid('#listPager',
+                {
+                    edit: false, del: false, search: true, refresh: true, add: false
+                }
+            );
+
+
+            $('#login').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("Login","Account")";
+            });
+
+            $('#User').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("CurrentUser","Home")";
+            });
+
+            $('#logoff').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("LogOff","Account")";
+
+            });
+
+            $('#Home').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("Index","Home")";
+            });
+        }
+);
+    </script>
+<div class="page-region-content fg-color-white">
+      <table id="list" class="scroll"></table>
+    <div id="listPager" class="scroll" style="text-align:center;"></div>                                                            
+<div id="listPsetcols" class="scroll" style="text-align:center;"></div>  
+</div>
+

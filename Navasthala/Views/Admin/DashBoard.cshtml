@@ -29,6 +29,14 @@
                 });
             });
             
+            $('#EOI').mousedown(function (e) {
+                e.stopPropagation();
+                $('.page-region-content').hide("fade", 500, function () {
+
+                    window.location.href = "@Url.Action("ExpressionOfInterest","Admin")";
+                });
+                        });
+            
         });
     </script>
 
@@ -66,5 +74,17 @@
             </div>
         </div>
     </div>
+
+    <div class="tile-group tile-drag" id="EOI">
+        <div class="tile icon bg-color-blue">
+            <div class="tile-content">
+                <img src="/images/EOI.jpg"/>
+            </div>
+            <div class="brand">
+                <div class="name">Expression of Interests</div>
+            </div>
+        </div>
+    </div>
+
     
 </div>

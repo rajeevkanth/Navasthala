@@ -1,71 +1,74 @@
-﻿@{
+﻿@model Navasthala.ViewModel.ContactViewModel
+@{
     ViewBag.Title = "Contact";
 }
-
-
 
 <div class="page-region-content text fg-color-white">
        <p class="icon-mail"> Drop in few lines.</p>
       <br />
       <!-- Begin Form -->   
-        <div class="contact">
+    <div class="contact-left">
         <div id="contact-form"> 
-        
-         <p>Name: <input type="text"></p>
-          @*@using (@Ajax.BeginForm(new AjaxOptions 
-                                    {
-                                     HttpMethod = "POST",
-                                     Url = "/Home/Contact",
-                                     UpdateTargetId = "slidingSection",
-                                     LoadingElementDuration =15000,
-                                     InsertionMode= InsertionMode.Replace,
-                 
-                                    }))
-          {
-              @Html.ValidationSummary(true)
-              <div class="labels">
-                  <p>
-                    @Html.LabelFor(p => p.Name)
-                      <br/>
-                    @Html.EditorFor(p => p.Name)
-                      @Html.ValidationMessageFor(p => p.Name)
-                  </p>
-                  <p>
-                    @Html.LabelFor(p => p.Phone)
-                      <br/>
-                    @Html.EditorFor(p => p.Phone)
-                      @Html.ValidationMessageFor(p => p.Phone)
-                  </p>
-                  <p>
-                    @Html.LabelFor(p => p.Email)
-                      <br/>
-                    @Html.EditorFor(p => p.Email)
-                      @Html.ValidationMessageFor(p => p.Email)
-                  </p>
-                  <p>
-                    @Html.LabelFor(p => p.Message)
+            @using (@Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="labels">
+                    <p>
+                        @Html.LabelFor(p => p.Name)
+                        <br/>
+                        @Html.EditorFor(p => p.Name)
+                        @Html.ValidationMessageFor(p => p.Name)
+                    </p>
+                    <p>
+                        @Html.LabelFor(p => p.Phone)
+                        <br/>
+                        @Html.EditorFor(p => p.Phone)
+                        @Html.ValidationMessageFor(p => p.Phone)
+                    </p>
+                    <p>
+                        @Html.LabelFor(p => p.Email)
+                        <br/>
+                        @Html.EditorFor(p => p.Email)
+                        @Html.ValidationMessageFor(p => p.Email)
+                    </p>
+                    <p>
+                        @Html.LabelFor(p => p.Message)
+                        <br/>
+                        @Html.TextAreaFor(p => p.Message)
+                        @Html.ValidationMessageFor(p => p.Message)
+                    </p>
                     <br/>
-                    @Html.TextAreaFor(p => p.Message)
-                    @Html.ValidationMessageFor(p => p.Message)
-                  </p>
-                  <br/>
-                  <input id="submit-button" class="button gray stripe"  type="submit" value="Send Message" />
+                    <input id="submit-button" class="button gray stripe"  type="submit" value="Send Message" />
 
-                  </div>        
-          }*@
-         </div>
-         </div>
-         <div class="float-right">
-        <div class="one-half">
-          <h4 class="fg-color-white">Head Office</h4>
-          <p>308, Somewhere in Bangalore <br />
-            Bangalore, India <br />
-            <br />
-            <span class="highlight3 icon-phone">Tel:</span> +91 994 5411 779 </p>
+                </div>        
+            }
         </div>
-      </div>
+    </div>
+
+    <div class="contact-right">
+        <div>
+            <h4 class="fg-color-white header">Head Office</h4>
+            <p>308, 5th Main Road, <br />
+            1st Block Koramangala,<br>  Bangalore - 560034<br/>
+                                  <br />
+        </div>
+          </div>
+    
+    <div class="contact-right">
+             <div>
+                 <h4 class="fg-color-white header">Manufactory</h4>
+                 <p>5J, Jigani Industrial Area,
+                     Bangalore<br/>
+                                          
+                     <span class="icon-mobile"> Mobile:</span> +91-9880701026<br>
+                     <span class="icon-support"> Sales:</span> +91-9632740055 </p>
+             </div>
+              </div>
       
-      <div class="divider"></div>
+    <div style="float: inherit;padding-left: 500px;">
+    <iframe style="width: 520px;height: 300px;" src="http://maps.google.com.au/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=No.+308,+5th+Main+road,+1st+Block+koramangala+Bangalore+%E2%80%93+560034&amp;aq=&amp;sll=-19.457034,145.879162&amp;sspn=28.696485,46.538086&amp;ie=UTF8&amp;hq=&amp;hnear=5th+Main+Rd,+Koramangala+1st+Block,+Ejipura,+Bangalore,+Karnataka+560034,+India&amp;t=m&amp;z=14&amp;iwloc=A&amp;ll=12.927244,77.634407&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com.au/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=No.+308,+5th+Main+road,+1st+Block+koramangala+Bangalore+%E2%80%93+560034&amp;aq=&amp;sll=-19.457034,145.879162&amp;sspn=28.696485,46.538086&amp;ie=UTF8&amp;hq=&amp;hnear=5th+Main+Rd,+Koramangala+1st+Block,+Ejipura,+Bangalore,+Karnataka+560034,+India&amp;t=m&amp;z=14&amp;iwloc=A&amp;ll=12.927244,77.634407" style="color:#0000FF;text-align:left"></a></small>
+        </div>
+    <div class="divider"></div>
  </div>
        
 

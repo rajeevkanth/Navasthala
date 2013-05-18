@@ -52,3 +52,4 @@ C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\DotNetOpenAuth.OpenId.RelyingPa
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.csprojResolveAssemblyReference.cache
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.dll
 C:\Projects\Core\Tiles\Navasthala\Navasthala\obj\Debug\Navasthala.pdb
+C:\Projects\Core\Tiles\Navasthala\Navasthala\bin\Microsoft.Web.Helpers.dll
