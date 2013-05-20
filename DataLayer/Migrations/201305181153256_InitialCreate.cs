@@ -16,6 +16,8 @@ namespace DataLayer.Migrations
                         Phone = c.String(maxLength: 50, fixedLength: true),
                         Email = c.String(nullable: false, maxLength: 50, fixedLength: true),
                         Message = c.String(nullable: false, maxLength: 1500, fixedLength: true),
+                        Date = c.DateTime(),
+                        SubscribeForNewsLetter = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -67,8 +69,10 @@ namespace DataLayer.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        IsActive = c.Boolean(nullable: false),
                         DateOfInvestment = c.DateTime(),
                         InvestedAmount = c.Double(),
+                        Rate = c.Double(),
                         Maturity = c.DateTime(),
                         FinalAmount = c.Double(),
                         UserId = c.Int(nullable: false),

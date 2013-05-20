@@ -26,7 +26,6 @@ namespace DataLayer.Models.Mapping
                 .HasMaxLength(50);
 
             this.Property(t => t.Message)
-                .IsRequired()
                 .IsFixedLength()
                 .HasMaxLength(1500);
 

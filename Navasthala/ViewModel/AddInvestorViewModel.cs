@@ -1,18 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Navasthala.ViewModel
 {
-    public class InvestorViewModel
+    public class AddInvestorViewModel
     {
-        public int InvestmentId { get; set; }
-
-        public string UserName { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
+        [Required]
+        public string InvestorName { get; set; }
 
         public DateTime? DateOfInvestment { get; set; }
 
@@ -23,7 +20,5 @@ namespace Navasthala.ViewModel
         public double? FinalAmount { get; set; }
 
         public double? Rate { get; set; }
-
-
     }
 }

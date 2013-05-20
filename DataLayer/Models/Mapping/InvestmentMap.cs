@@ -18,6 +18,7 @@ namespace DataLayer.Models.Mapping
             this.Property(t => t.Maturity).HasColumnName("Maturity");
             this.Property(t => t.FinalAmount).HasColumnName("FinalAmount");
             this.Property(t => t.UserId).HasColumnName("UserId");
+            this.Property(t => t.Rate).HasColumnName("Rate");
 
             // Relationships
             this.HasRequired(t => t.UserProfile)

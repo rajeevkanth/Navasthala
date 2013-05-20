@@ -83,7 +83,9 @@ namespace Navasthala.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password,new{Email=model.Email});
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password,new{Email=model.Email,IsActive=true,LastName=model.LastName});
+                    var roles = (SimpleRoleProvider)Roles.Provider;
+                    roles.AddUsersToRoles(new[] { model.UserName }, new[] { "User" });
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }

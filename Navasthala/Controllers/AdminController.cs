@@ -52,52 +52,13 @@ namespace Navasthala.Controllers
             return View("EOIView");
         }
 
-        public ActionResult ListInvestors(string sidx, string sord, int page, int rows)
+        public ActionResult GetInvestments(string sidx, string sord, int page, int rows)
         {
-           var roleProvider = (SimpleRoleProvider)Roles.Provider;
-
-            var results = (from user in _context.UserProfiles.Include("Investments").Where(p => p.IsActive).AsEnumerable()
-                           where roleProvider.GetRolesForUser(user.UserName).Contains("Investor")
-                           select new {User = user, Investment = user.Investments});
-
-            var investors = new List<InvestorViewModel>();
-
-            foreach (var result in results)
-            {
-                if (!result.Investment.Any())
-                {
-                    var vm = new InvestorViewModel
-                        {
-                            UserName = result.User.UserName,
-                            FirstName = result.User.FirstName,
-                            LastName = result.User.LastName,
-                            DateOfBirth = result.User.DateOfBirth,
-                            Email =result.User.Email,
-                            UserId = result.User.UserId
-                        };
-                    investors.Add(vm);
-                    continue;
-                }
-
-                investors.AddRange(result.Investment.Select(investment => new InvestorViewModel
-                    {
-                        UserName = result.User.UserName,
-                        FirstName = result.User.FirstName,
-                        LastName = result.User.LastName,
-                        DateOfBirth = result.User.DateOfBirth,
-                        Email = result.User.Email,
-                        DateOfInvestment = investment.DateOfInvestment,
-                        InvestedAmount = investment.InvestedAmount,
-                        Maturity = investment.Maturity,
-                        FinalAmount = investment.FinalAmount,
-                        InvestmentId = investment.Id,
-                        UserId = result.User.UserId
-                    }));
-            }
+            var investments = _context.Investments.Include("UserProfile").Where(p => p.IsActive).ToArray();
 
             var pageIndex = Convert.ToInt32(page) - 1;
             var pageSize = rows;
-            var totalRecords = investors.Count();
+            var totalRecords = investments.Count();
             var totalPages = (int)Math.Ceiling((float)totalRecords / (float)pageSize);
 
             var jsonData = new
@@ -106,28 +67,46 @@ namespace Navasthala.Controllers
                 page = page,
                 records = totalRecords,
                 rows = (
-                    from inv in investors
+                    from inv in investments
                     select new
                     {
-                        i = inv.UserName,
+                        i = inv.Id,
                         cell = new[] {
-                            inv.LastName, 
-                            inv.Email,
-                            inv.DateOfInvestment.HasValue ? inv.DateOfInvestment.Value.ToShortDateString() :null ,
-                            inv.InvestedAmount.ToString(),
-                            inv.Maturity.HasValue ? inv.Maturity.Value.ToShortDateString():null,
-                            inv.FinalAmount.ToString(),
-                            inv.InvestmentId.ToString(),
-                            inv.UserId.ToString()
+                                inv.UserProfile.UserName, 
+                                inv.UserProfile.Email,
+                                inv.DateOfInvestment.HasValue ? inv.DateOfInvestment.Value.ToShortDateString() :null ,
+                                inv.InvestedAmount.ToString(),
+                                inv.Maturity.HasValue ? inv.Maturity.Value.ToShortDateString():null,
+                                inv.FinalAmount.ToString(),
+                                inv.Rate.ToString(),
+                                inv.Id.ToString()
 
-                        }
+                            }
                     }).ToArray()
             };
 
             return Json(jsonData, JsonRequestBehavior.AllowGet);
+
         }
 
-        public ActionResult UpdateInvestor(InvestorViewModel viewModel, FormCollection formCollection)
+        
+        public ActionResult GetInvestors()
+        {
+            var roleProvider = (SimpleRoleProvider)Roles.Provider;
+            //"<option value='Woodland Hills'>Woodland Hills<\/option>"
+
+            var results = (from user in _context.UserProfiles.Where(p => p.IsActive).AsEnumerable()
+                           where roleProvider.GetRolesForUser(user.UserName).Contains("Investor")
+                            select new
+                               {
+                                   user.UserName
+                                   
+                               }).ToArray();
+
+             return Json(results, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult UpdateInvestment(InvestorViewModel viewModel, FormCollection formCollection)
         {
             var operation = formCollection["oper"];
             if (operation.Equals("edit"))
@@ -141,46 +120,90 @@ namespace Navasthala.Controllers
                     investment.InvestedAmount = viewModel.InvestedAmount;
                     investment.Maturity = viewModel.Maturity;
                     investment.FinalAmount = viewModel.FinalAmount;
-                }
-                else
-                {
-                    var user = _context.UserProfiles.FirstOrDefault(p => p.UserId == viewModel.UserId);
-                    user.LastName = viewModel.LastName;
-                    user.Email = viewModel.Email;
-
-
-                    _context.Investments.Add(new Investment
-                        {
-                            DateOfInvestment = viewModel.DateOfInvestment,
-                            InvestedAmount = viewModel.InvestedAmount,
-                            Maturity = viewModel.Maturity,
-                            FinalAmount = viewModel.FinalAmount,
-                            UserProfile = user
-                        });
+                    investment.Rate = viewModel.Rate;
                 }
                 _context.SaveChanges();
-
-
-
             }
             else if (operation.Equals("del"))
             {
-
+                var investment = _context.Investments.Include("UserProfile").FirstOrDefault(p => p.Id == viewModel.InvestmentId);
+                if (investment != null)
+                {
+                    investment.IsActive = false;
+                }
+                _context.SaveChanges();
             }
 
             return null; //Content(repository.HasErrors.ToString().ToLower()); 
 
         }
+        [HttpPost]
+        public ActionResult AddInvestment(AddInvestorViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var user =
+                    _context.UserProfiles.FirstOrDefault(
+                        p => p.UserName.ToLower().Equals(viewModel.InvestorName.ToLower()));
+
+                _context.Investments.Add(new Investment
+                {
+                    DateOfInvestment = viewModel.DateOfInvestment,
+                    InvestedAmount = viewModel.InvestedAmount,
+                    Maturity = viewModel.Maturity,
+                    FinalAmount = viewModel.FinalAmount,
+                    IsActive = true,
+                    UserProfile = user,
+                    Rate = viewModel.Rate
+                });
+                _context.SaveChanges();
+                return Json("Success");
+            }
+            return Json("Invalid Parameters");
+        }
 
         public ActionResult UpdateUser(UserViewModel viewModel, FormCollection formCollection)
         {
+            var operation = formCollection["oper"];
+            if (operation.Equals("edit"))
+            {
+                var user = _context.UserProfiles.FirstOrDefault(p => p.UserId == viewModel.UserId);
+                if (user != null)
+                {
+                    var roleProvider = (SimpleRoleProvider)Roles.Provider;
+                    
+                    if (!roleProvider.GetRolesForUser(user.UserName).Contains(viewModel.Role))
+                    {
+                        roleProvider.RemoveUsersFromRoles(new[]{user.UserName},roleProvider.GetRolesForUser(user.UserName));
+                        roleProvider.AddUsersToRoles(new[] { user.UserName }, new[] { viewModel.Role.TrimStart() });
+                        _context.SaveChanges();
+                    }
+
+                    user.FirstName = viewModel.FirstName;
+                    user.LastName = viewModel.LastName;
+                    user.Email = viewModel.Email;
+                    user.DateOfBirth = viewModel.DateOfBirth;
+
+                    _context.SaveChanges();
+                }
+            }
+
+            if (operation.Equals("del"))
+            {
+                var user = _context.UserProfiles.FirstOrDefault(p => p.UserId == viewModel.UserId);
+                user.IsActive = false;
+                _context.SaveChanges();
+            }
+
+
             return null;
         }
 
         public ActionResult GetUsers(string sidx, string sord, int page, int rows, bool _search, string searchField, string searchOper, string searchString)
         {
             var roleProvider = (SimpleRoleProvider)Roles.Provider;
-            var users = _context.UserProfiles.Where(p=>p.UserName != User.Identity.Name).AsEnumerable();
+            var users = _context.UserProfiles.Where(p=>p.UserName != User.Identity.Name && p.IsActive).AsEnumerable();
 
             if (_search)
             {
@@ -239,7 +262,7 @@ namespace Navasthala.Controllers
                             usr.LastName,
                             usr.FirstName,
                             usr.Email,
-                            usr.DateOfBirth,
+                            usr.DateOfBirth.HasValue? usr.DateOfBirth.Value.ToShortDateString() :string.Empty,
                             usr.Role,
                             usr.UserId.ToString()
 

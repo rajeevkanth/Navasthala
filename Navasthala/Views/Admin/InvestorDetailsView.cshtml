@@ -22,7 +22,7 @@
         {
             var updateDialog =
             {
-                url: "@Url.Action("UpdateInvestor","Admin")"
+                url: "@Url.Action("UpdateInvestment","Admin")"
                 , closeAfterAdd: true
                 , closeAfterEdit: true
                 , afterShowForm: function (formId) {
@@ -30,7 +30,7 @@
                     //$("#DateOfInvestment").datepicker();
                 }
                 , afterclickPgButtons: function (whichbutton, formid, rowid) {
-                   // $("#PhoneNumber").mask("(999) 999-9999");
+                    // $("#PhoneNumber").mask("(999) 999-9999");
                 }
                 , modal: true
                 
@@ -40,7 +40,7 @@
                     var list = $("#list");
                     var selectedRow = list.getGridParam("selrow");
                     rowData = list.getRowData(selectedRow);
-                    ajaxData = { InvestmentId: rowData.InvestmentId,UserId:rowData.UserId };
+                    ajaxData = { InvestmentId: rowData.InvestmentId };
 
                     return ajaxData;
                 }
@@ -53,21 +53,76 @@
             $.jgrid.del.caption = "Delete Investor";
             $.jgrid.del.msg = "Delete selected Investor?";
             
+            $('.AddInvestment').hide();
+
+            $('#Add').click(function ()
+            {
+                $.ajax({
+                            type: "POST", //GET or POST or PUT or DELETE verb
+                            url: "/Admin/GetInvestors", // Location of the service
+                            contentType: "application/json; charset=utf-8", // content type sent to server
+                            dataType: "json", //Expected data format from server
+                            processdata: true, //True or False
+                            success: function (response)
+                            {
+                                $('.AddInvestment').show();
+                                var result = $.map(response, function (key, val) {
+                                    return "<option value='" + val + "'>" + key.UserName + "</option>";
+                                }).join('');
+                                $('#myselect').append(result);
+                            },
+                            error: function (request, error)
+                            {
+
+                            }
+                        });
+            });
+            
+
+            
+            $('#submit-button').click(function () {
+                $('.AddInvestment').hide();
+                var data =
+                {
+                    InvestorName: $("#myselect option:selected").text(),
+                    DateOfInvestment: $('#DateOfInvestment').val(),
+                    InvestedAmount: $('#InvestedAmount').val(),
+                    Maturity: $('#Maturity').val(),
+                    FinalAmount: $('#FinalAmount').val(),
+                    Rate: $('#Rate').val()
+                };
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/AddInvestment",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8", // content type sent to server
+                    dataType: "json", //Expected data format from server
+                    processdata: true, //True or False
+                    success: function (response) {
+                        
+                        location.reload();
+                        $('.AddInvestment').hide();
+                    }
+                });
+            });
+            
+
             $("#list").jqGrid({
-                url: "@Url.Action("ListInvestors","Admin")",
+                url: "@Url.Action("GetInvestments","Admin")",
                 datatype: 'json',
                 mtype: 'GET',
-                colNames: ['LastName', 'E-mail', 'DateOfInvestment', 'InvestedAmount', 'Maturity', 'FinalAmount', 'InvestmentId','UserId'],
+                colNames: ['Invested by', 'E-mail', 'DateOfInvestment', 'InvestedAmount', 'Maturity', 'FinalAmount','Rate', 'Id'],
                 colModel: [
-                    { name: 'LastName', index: 'LastName', width: 100, align: 'left', editable: true, edittype: 'text', editrules: { required: true }, formoptions: { elmsuffix: ' *'} },
-                    { name: 'Email', index: 'Email', width: 100, align: 'left', formatter: 'mail', editable: true, edittype: 'text', editrules: { required: true, email: true }, formoptions: { elmsuffix: ' *'} },
-                    { name: 'DateOfInvestment', index: 'DateOfInvestment', width: 75, align: 'left', formatter: 'date', datefmt: 'd/m/Y', editable: true, edittype: 'text', editrules: { required: true, date: true }, formoptions: { elmsuffix: ' *' } },
-                    { name: 'InvestedAmount', index: 'InvestedAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: true}, formoptions: { elmsuffix: ' *' } },
-                    { name: 'Maturity', index: 'Maturity', width: 70, align: 'left', editable: true, edittype: 'text',formatter: 'date', datefmt: 'd/m/Y', editrules: { required: true}, formoptions: { elmsuffix: ' *' } },
-                   { name: 'FinalAmount', index: 'FinalAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: true }, formoptions: { elmsuffix: ' *' } },
-                   { name: 'InvestmentId', index: 'InvestorId', width: 40, align: 'left', /* key: true,*/ editable: false, editrules: { edithidden: false }, hidedlg: true, hidden: true },
-                   { name: 'UserId', index: 'UserId', width: 40, align: 'left', /* key: true,*/ editable: false, editrules: { edithidden: false }, hidedlg: true, hidden: true }
-                ],
+                    { name: 'UserName', index: 'UserName', width: 100, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *'} },
+                    { name: 'Email', index: 'Email', width: 100, align: 'left', formatter: 'mail', editable: true, edittype: 'text', editrules: { required: false, email: true }, formoptions: { elmsuffix: ' *'} },
+                    { name: 'DateOfInvestment', index: 'DateOfInvestment', width: 75, align: 'left', formatter: 'date', datefmt: 'd/m/Y', editable: true, edittype: 'text', editrules: { required: false, date: true }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'InvestedAmount', index: 'InvestedAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false}, formoptions: { elmsuffix: ' *' } },
+                    { name: 'Maturity', index: 'Maturity', width: 70, align: 'left', editable: true, edittype: 'text',formatter: 'date', datefmt: 'd/m/Y', editrules: { required: false}, formoptions: { elmsuffix: ' *' } },
+                    { name: 'FinalAmount', index: 'FinalAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'Rate', index: 'Rate', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'InvestmentId', index: 'InvestmentId', width: 40, align: 'left', /* key: true,*/ editable: false, editrules: { edithidden: false }, hidedlg: true, hidden: true }
+                   ],
                 
                 pager: $('#listPager'),
                 //rowNum: 1000,
@@ -109,11 +164,34 @@
                 window.location.href = "@Url.Action("Index","Home")";
             });
         }
+        
+
 );
     </script>
 <div class="page-region-content fg-color-white">
       <table id="list" class="scroll"></table>
     <div id="listPager" class="scroll" style="text-align:center;"></div>                                                            
-<div id="listPsetcols" class="scroll" style="text-align:center;"></div>  
+    <div id="listPsetcols" class="scroll" style="text-align:center;"></div>  
+    
+    <br>
+    <input type="button" id="Add" value="Add investment"/>
+    
+    <section id="search-form" class="AddInvestment">
+        
+        <table>
+            <tr>
+                <td style="border: 0px;width: 200px;float:left"><p>Investor: <select id="myselect" name="myselect" ></select></p></td>
+                <td style="border: 0px;width: 200px;float:left"><p>Date of Investment: <input type="date" id="DateOfInvestment"></p></td>
+                <td style="border: 0px;width: 200px;float:left"><p>Invested Amount: <input type="text" id="InvestedAmount"></p></td>
+                <td style="border: 0px;width: 200px;float:left"><p>Maturity: <input type="date" id="Maturity"></p></td>
+                <td style="border: 0px;width: 200px;float:left"><p>Final Amount: <input type="text" id="FinalAmount"></p></td>
+                <td style="border: 0px;width: 200px;float:left"><p>Rate: <input type="text" id="Rate"></p></td>
+            </tr>
+            <tr>
+                <td style="border: 0px;width: 200px;float:left;vertical-align: bottom"><input type="button" id="submit-button" value="Save"></td>
+            </tr>
+        </table>
+        <br>
+    </section>
 </div>
 

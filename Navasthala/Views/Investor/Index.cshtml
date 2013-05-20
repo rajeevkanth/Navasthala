@@ -1,0 +1,87 @@
+﻿
+
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InvestorDetailsView</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="/Jqgrid/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+    <script src="/Jqgrid/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.maskedinput-1.2.2.min.js" type="text/javascript"></script>
+
+</head>
+ 
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $("#list").jqGrid({
+                url: "@Url.Action("GetInvestments","Investor")",
+                datatype: 'json',
+                mtype: 'GET',
+                colNames: ['DateOfInvestment', 'InvestedAmount', 'Maturity', 'FinalAmount', 'Rate'],
+                colModel: [
+                    { name: 'DateOfInvestment', index: 'DateOfInvestment', width: 75, align: 'left', formatter: 'date', datefmt: 'd/m/Y', editable: true, edittype: 'text', editrules: { required: false, date: true }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'InvestedAmount', index: 'InvestedAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'Maturity', index: 'Maturity', width: 70, align: 'left', editable: true, edittype: 'text', formatter: 'date', datefmt: 'd/m/Y', editrules: { required: false }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'FinalAmount', index: 'FinalAmount', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *' } },
+                    { name: 'Rate', index: 'Rate', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: false }, formoptions: { elmsuffix: ' *' } }
+                    ],
+
+                pager: $('#listPager'),
+                //rowNum: 1000,
+                //rowList: [1000],
+                sortname: 'DateOfInvestment',
+                sortorder: "desc",
+                viewrecords: true,
+                imgpath: '/Content/Themes/Redmond/Images',
+                caption: 'Your Investments in Navasthala',
+                autowidth: true
+            }).navGrid('#listPager',
+                {
+                    edit: false, del: false, search: false, refresh: true, add: false
+                }
+            );
+
+
+            $('#login').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("Login","Account")";
+            });
+
+            $('#User').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("CurrentUser","Home")";
+            });
+
+            $('#logoff').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("LogOff","Account")";
+
+            });
+
+            $('#Home').mousedown(function (e) {
+                e.stopPropagation();
+                window.location.href = "@Url.Action("Index","Home")";
+            });
+        }
+
+
+);
+    </script>
+<div class="page-region-content fg-color-white">
+      <table id="list" class="scroll"></table>
+    <div id="listPager" class="scroll" style="text-align:center;"></div>                                                            
+    <div id="listPsetcols" class="scroll" style="text-align:center;"></div>  
+    
+    <br>
+ 
+    
+
+</div>
+

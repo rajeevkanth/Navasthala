@@ -54,6 +54,11 @@ namespace DataLayer.Migrations
                 roles.CreateRole("Investor");
             }
 
+            if (!roles.RoleExists("User"))
+            {
+                roles.CreateRole("User");
+            }
+
             if (membership.GetUser("Rajeev", false) == null)
             {
                 //membership.CreateUserAndAccount("Rajeev", "Admin123", new Dictionary<string, object> { new { "Email", "myemail@gmail.com" }});
@@ -107,6 +112,11 @@ namespace DataLayer.Migrations
             if (!roles.GetRolesForUser("Vidya").Contains("Investor"))
             {
                 roles.AddUsersToRoles(new[] { "Vidya" }, new[] { "Investor" });
+            }
+
+            if (!roles.GetRolesForUser("Fanboy").Contains("User"))
+            {
+                roles.AddUsersToRoles(new[]{"Fanboy"},new[]{"User"});
             }
 
 
