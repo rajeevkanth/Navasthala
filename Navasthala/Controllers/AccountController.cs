@@ -41,7 +41,22 @@ namespace Navasthala.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            //Check for inactive users
+            var user =
+                _context.UserProfiles.FirstOrDefault(
+                    p => p.UserName.ToLower().Equals(model.UserName.ToLower()) && p.IsActive);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Looks like your account is deactivated, please contact the administrator");
+                return View(model);
+            }
+
+            if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 return RedirectToLocal(returnUrl);
             }

@@ -68,10 +68,10 @@ namespace Navasthala.Controllers
                 return RedirectToAction("DashBoard","Admin");
             }
             
-            if(User.IsInRole("Investor"))
-                return RedirectToAction("Index", "Investor");
+            //if(User.IsInRole("Investor"))
+            //    return RedirectToAction("Index", "Investor");
 
-            return View("UserView");
+            return RedirectToAction("Index", "User");
         }
     }
 }

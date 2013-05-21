@@ -173,12 +173,10 @@ namespace Navasthala.Controllers
                 {
                     var roleProvider = (SimpleRoleProvider)Roles.Provider;
                     
-                    if (!roleProvider.GetRolesForUser(user.UserName).Contains(viewModel.Role))
-                    {
-                        roleProvider.RemoveUsersFromRoles(new[]{user.UserName},roleProvider.GetRolesForUser(user.UserName));
-                        roleProvider.AddUsersToRoles(new[] { user.UserName }, new[] { viewModel.Role.TrimStart() });
-                        _context.SaveChanges();
-                    }
+                    roleProvider.RemoveUsersFromRoles(new[]{user.UserName},roleProvider.GetRolesForUser(user.UserName));
+                    roleProvider.AddUsersToRoles(new[] { user.UserName }, new[] { viewModel.Role.TrimStart() });
+                    _context.SaveChanges();
+                  
 
                     user.FirstName = viewModel.FirstName;
                     user.LastName = viewModel.LastName;

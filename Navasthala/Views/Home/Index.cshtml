@@ -61,6 +61,13 @@
 
                 });
 
+        $('#LoggedInUser').mouseup(function () {
+            $('#content').hide("fade", 500, function () {
+
+                window.location.href = "@Url.Action("CurrentUser","Home")";
+            });
+
+                });
            
         });
         
@@ -165,77 +172,106 @@
 
                 </div>
                 
-                <div class="tile-group tile-drag">
+               <div class="tile-group tile-drag">
                     
-                    <div class="tile double  bg-color-yellow" id="Investor">
-                        <div class="tile-content fg-color-blueDark">
-                            <h2>Investors Dashboard</h2>
-                            <h5>Together, we grow</h5>
-                            <p>
-                                click for more details.                        
-                            </p>
-                        </div>
-
-                        <div class="brand">
-                            <div class="badge"></div>
-                            <span class="name">Manage your Investment</span>
-                        </div>
-                    </div>
-
-                    <div class="tile double  bg-color-orangeDark" id="Products">
-                        <div class="tile-content fg-color-blueDark">
-                            <h2>Products</h2>
-                            <h5>Innovation at it's best</h5>
-                            <p>
-                                View all our products.                        
-                            </p>
-                        </div>
-
-                        <div class="brand">
-                            <div class="badge"></div>
-                            <span class="name">Products</span>
-                        </div>
-                    </div>         
-                    
-                    <div class="tile double bg-color-blue">
-                        <div class="tile-content fg-color-blueDark">
-                            <h2>Roadmap</h2>
-                            <h5>Upcoming projects</h5>
-                            <p>
-                                Where do we go from here.                        
-                            </p>
-                        </div>
-
-                        <div class="brand">
-                            <div class="badge"></div>
-                            <span class="name">Drawing room.</span>
-                        </div>
-                    </div>                    
-           
-
-                </div>
-                
-                <div class="tile-group tile-drag">
-                    
-        <div class="tile double triple-vertical  bg-color-grayDark">
-            <div class="tile-content">
-                <h5>This space can be used as well.</h5>
-                <p>Link up with a live feed or something</p>
-                <p>Customers?</p>
-                <p>Feedbacks?</p>
-                <p>About the board?</p>
-                <p>Advertisement?</p>
-                <p>Mylo?</p>
+        <div class="tile double  bg-color-yellow" id="Investor">
+            <div class="tile-content fg-color-blueDark">
+                <h2>Investors Dashboard</h2>
+                <h5>Together, we grow</h5>
+                <p>
+                    click for more details.                        
+                </p>
             </div>
-                        
 
             <div class="brand">
                 <div class="badge"></div>
-                <span class="name">Coming soon.</span>
+                <span class="name">Manage your Investment</span>
             </div>
         </div>
 
+        <div class="tile double  bg-color-orangeDark" id="Products">
+            <div class="tile-content fg-color-blueDark">
+                <h2>Products</h2>
+                <h5>Innovation at it's best</h5>
+                <p>
+                    View all our products.                        
+                </p>
+            </div>
+
+            <div class="brand">
+                <div class="badge"></div>
+                <span class="name">Products</span>
+            </div>
+        </div>         
+                    
+        <div class="tile double bg-color-blue">
+            <div class="tile-content fg-color-blueDark">
+                <h2>Roadmap</h2>
+                <h5>Upcoming projects</h5>
+                <p>
+                    Where do we go from here.                        
+                </p>
+            </div>
+
+            <div class="brand">
+                <div class="badge"></div>
+                <span class="name">Drawing room.</span>
+            </div>
+        </div>                    
+           
+
     </div>
+    
+    <div class="tile-group tile-drag">
+        
+        <div class="tile double bg-color-greenLight" data-role="tile-slider" data-param-period="6000" data-param-direction="right">
+            <div class="tile-content">
+                <h2> </h2>
+                <h5 class="text-center center"> You want to destroy definitions?</h5>
+               
+            </div>
+
+            <div class="tile-content">
+                <h2> </h2>
+                <h5 class="text-center"> Do you have that idea?</h5>
+            </div>
+
+            <div class="tile-content">
+                <h2> </h2>
+                <h5 class="text-center">Then Navasathala could be the place.</h5>
+            </div>
+
+
+
+            <div class="brand">
+                <div class="badge"></div>
+                <span class="name">Careers</span>
+            </div>
+        </div>
+        
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+            <div class="tile double  bg-color-grayDark" id="LoggedInUser">
+            <div class="tile-content fg-color-blueDark">
+                <h5 >Welcome back @User.Identity.Name</h5>
+                <p>
+                    Access your personal dashboard from here.                        
+                </p>
+            </div>
+
+            <div class="brand">
+                <div class="badge"></div>
+                <span class="name">Dashboard</span>
+            </div>
+        </div>       
+            }
+        }
+        
+
+    </div>
+                
+
 
 </div>
             

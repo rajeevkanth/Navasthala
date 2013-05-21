@@ -1,0 +1,178 @@
+﻿@model Navasthala.ViewModel.UserDetailsViewModel
+@{
+    ViewBag.Title = "UserView";
+}
+<head>
+    <title>
+        User View.
+    </title>
+  <link href="/Jqgrid/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/Scripts/jquery.validate.js" type="text/javascript"></script>
+</head>
+
+<script>
+    $(function ()
+    {
+        $('#SaveForm').validate({
+            onkeyup: false,
+            rules: {
+                LastName: {
+                    required: true,
+                    maxlength: 25,
+                },
+                FirstName: {
+                    required: true,
+                    maxlength: 25,
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+            },
+                
+            messages: {
+                    LastName: "Last name cant be blank",
+                    FirstName: "First name cant be blank",
+                    Email:"Email not in proper format"
+                },
+            
+            submitHandler: function (form) 
+            {
+                var data =
+                {
+                    LastName: $('#LastName').val(),
+                    FirstName: $('#FirstName').val() ,
+                    Email:$('#Email').val() ,
+                    DateOfBirth: $('#DateOfBirth').val(),
+                    UserName: $('#UserName').val()
+                };
+                   
+
+                $.ajax({
+                    type: "POST",
+                    url: "/User/Index",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8", 
+                    processdata: false, //True or False
+                    success: function (response)
+                    {
+                        location.reload();
+
+                    },
+                    error: function (request, error) {
+                        location.reload();
+                    }
+
+                        
+                    
+                });
+            }
+        });
+
+
+
+        $('#LastName').blur(function () {
+            $('#SaveForm').validate().element(this);
+        });
+        
+        $('#FirstName').blur(function () {
+            $('#SaveForm').validate().element(this);
+        });
+     $("#tabs").tabs();
+        
+      $('.EditForm').hide();
+      $('#ViewForm').show();
+      
+      $('#Edit').mousedown(function ()
+      {
+          $('#ViewForm').hide();
+          $('.EditForm').show();
+      });
+      
+      $('#Cancel').mousedown(function ()
+      {
+          $('#ViewForm').show();
+          $('.EditForm').hide();
+      });
+      
+      
+
+  });
+  </script>
+
+<div class="page-region-content text fg-color-white">
+     
+<div id="tabs">
+  <ul>
+      <li><a href="#tabs-1">Personal details</a></li>
+      <li><a href="#tabs-2">Address details</a></li>
+      <li><a href="#tabs-3">Phone details</a></li>
+       <li><a href="#tabs-4">Login Information</a></li>
+  </ul>
+    <div id="tabs-1">
+        <section class="form-view-data" id="ViewForm">
+            <p>Last name: @Html.DisplayFor(p=>p.LastName)</p>
+            <br>
+            <p>First name: @Html.DisplayFor(p=>p.FirstName)</p>
+            <br>
+            <p>Email: @Html.DisplayFor(p=>p.Email)</p>
+            <br>
+            <p>Date of birth: @Html.DisplayFor(p=>p.DateOfBirth)</p>
+            <br>
+            <input type="button" value="Edit" id="Edit"/>
+
+        </section>
+        
+        <section  id="search-form" class="EditForm">
+            
+            <form id="SaveForm">
+                @Html.LabelFor(p => p.LastName)
+                <br>
+                @Html.TextBoxFor(p => p.LastName,new{name="LastName",Id="LastName"})
+                @Html.ValidationMessageFor(p => p.LastName)
+                <br>
+
+                @Html.LabelFor(p => p.FirstName)
+                @Html.TextBoxFor(p => p.FirstName,new{name="FirstName",Id="FirstName"})
+                @Html.ValidationMessageFor(p=>p.FirstName)
+                <br>
+                            
+                @Html.LabelFor(p => p.Email)
+                @Html.TextBoxFor(p => p.Email,new{name="Email",Id="Email"})
+                @Html.ValidationMessageFor(p=>p.Email)
+                <br>
+                            
+                @Html.LabelFor(p => p.DateOfBirth)
+                @Html.TextBoxFor(p => p.DateOfBirth,new{name="DateOfBirth",Id="DateOfBirth"})
+                @Html.ValidationMessageFor(p=>p.DateOfBirth)
+                
+                @Html.HiddenFor(p=>p.UserName,new {Id="UserName"})
+                <br>
+                <table>
+                    <tr>
+                        <td style="border: 0px; width: 100px"><input type="submit" value="Save" id="Save" class="submit-button" style="max-width: 100px"/></td>
+                        <td style="border: 0px; float: left"><input type="button" value="Cancel" id="Cancel" class="submit-button" style="max-width: 100px; float: right"/></td>
+                    </tr>
+                </table>
+            </form>
+                 
+
+        </section>
+    </div>
+    
+    <div id="tabs-2">
+    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+  </div>
+    <div id="tabs-3">
+        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+    </div>
+    
+    <div id="tabs-4">
+   <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+   </div>
+</div>
+
+</div>

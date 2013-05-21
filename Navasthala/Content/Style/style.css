@@ -68,6 +68,24 @@
 	cursor: pointer;
 }
 
+.submit-button {
+	clear:both;
+	margin:0px;
+	text-align: center;
+	margin: 0px 5px 0 0;
+	width: auto;
+	background:radial-gradient();
+	color:whitesmoke;
+	position: relative;
+	z-index: 9999;
+	padding: 0;
+	height: 32px;
+	padding-bottom: 2px;
+	width: 120px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
 #contact-form p { 
 	position: relative; 
 	margin: 0; 
