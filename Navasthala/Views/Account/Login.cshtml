@@ -18,13 +18,17 @@
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName)
                         @Html.ValidationMessageFor(m => m.UserName)
-                        <br>   
-             
+                        
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password)
                         @Html.ValidationMessageFor(m => m.Password)
                
-               <input type="submit" id="submit-button" value="Log in" />
+                        <input type="submit" id="submit-button" value="Log in" />
+            <br/>
+            <p>
+                @Html.ActionLink("ForgotPassword ?","ForgotPassword")
+            </p>
+            <br />
             <p>
                 @Html.ActionLink("Register", "Register") if you don't have an account.
             </p>

@@ -18,6 +18,14 @@ namespace Navasthala
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "passwordReset",
+                url: "{controller}/{action}/{userName&resetToken}",
+                defaults: new { controller = "Account", action = "ResetPassword" }
+            );
+
+            
         }
     }
 }

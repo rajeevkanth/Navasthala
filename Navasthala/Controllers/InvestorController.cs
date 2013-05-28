@@ -23,9 +23,6 @@ namespace Navasthala.Controllers
                 return View();
             
             
-
-
-
             return RedirectToAction("UnAuthorised", "Home");
         }
 

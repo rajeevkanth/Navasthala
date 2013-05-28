@@ -8,6 +8,7 @@ using System.Web.Security;
 using DataLayer.Models;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
+using Navasthala.ViewModel;
 using WebMatrix.WebData;
 using Navasthala.Filters;
 
@@ -85,6 +86,66 @@ namespace Navasthala.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword(ForgotPasswordModel model)
+        {
+            var usermodel = _context.UserProfiles.First(p=>p.Email.ToLower().Equals(model.EmailAddress.ToLower()));
+            if (usermodel != null)
+            {
+                var token = WebSecurity.GeneratePasswordResetToken(usermodel.UserName);
+                var link = HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Authority + Url.Action("ResetPassword", "Account", new {userName=usermodel.UserName, resetToken = token });
+                MailManager.MailManager.SendPasswordResetMail(link, new UserViewModel { LastName = usermodel.LastName, Email = usermodel.Email });
+            }
+            return View("PasswordResetConfirmation");
+        }
+
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string userName, string resetToken)
+        {
+            var model = new PaswordResetModel
+                {
+                    ResetToken = resetToken,
+                    UserName = userName
+                };
+
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult ResetPassword(PaswordResetModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (WebSecurity.ResetPassword(model.ResetToken, model.NewPassword))
+                    {
+                        WebSecurity.Login(model.UserName, model.NewPassword);
+                        return RedirectToAction("Index", "Home");
+                        
+                    }
+                    else
+                    {
+                        return View("ResetPasswordFailure");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return View("ResetPasswordFailure");
+                }
+            }
+            return View();
+        }
+
+
         //
         // POST: /Account/Register
 
@@ -102,6 +163,7 @@ namespace Navasthala.Controllers
                     var roles = (SimpleRoleProvider)Roles.Provider;
                     roles.AddUsersToRoles(new[] { model.UserName }, new[] { "User" });
                     WebSecurity.Login(model.UserName, model.Password);
+                    MailManager.MailManager.SendWelcomeMessage(new UserViewModel{LastName = model.LastName,UserName = model.UserName,Email = model.Email});
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

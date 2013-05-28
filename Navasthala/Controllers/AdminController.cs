@@ -93,8 +93,6 @@ namespace Navasthala.Controllers
         public ActionResult GetInvestors()
         {
             var roleProvider = (SimpleRoleProvider)Roles.Provider;
-            //"<option value='Woodland Hills'>Woodland Hills<\/option>"
-
             var results = (from user in _context.UserProfiles.Where(p => p.IsActive).AsEnumerable()
                            where roleProvider.GetRolesForUser(user.UserName).Contains("Investor")
                             select new

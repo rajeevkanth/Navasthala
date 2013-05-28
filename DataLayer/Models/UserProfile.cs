@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DataLayer.CustomValidator;
 
 namespace DataLayer.Models
 {
@@ -65,6 +66,29 @@ namespace DataLayer.Models
         public bool RememberMe { get; set; }
     }
 
+    public class ForgotPasswordModel
+    {
+        [Required]
+        public string EmailAddress { get; set; }
+    }
+
+    public class PaswordResetModel
+    {
+        public string ResetToken { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmNewPassword { get; set; }
+
+        public string UserName { get; set; }
+    }
+
     public class RegisterModel
     {
         [Required]
@@ -88,6 +112,7 @@ namespace DataLayer.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [UniqueEmailValidator(ErrorMessage = "Please select a unique email address")]
         public string Email { get; set; }
     }
 

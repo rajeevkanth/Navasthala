@@ -3,7 +3,7 @@ namespace DataLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,7 @@ namespace DataLayer.Migrations
                         Name = c.String(nullable: false, maxLength: 50, fixedLength: true),
                         Phone = c.String(maxLength: 50, fixedLength: true),
                         Email = c.String(nullable: false, maxLength: 50, fixedLength: true),
-                        Message = c.String(nullable: false, maxLength: 1500, fixedLength: true),
+                        Message = c.String(maxLength: 1500, fixedLength: true),
                         Date = c.DateTime(),
                         SubscribeForNewsLetter = c.Boolean(),
                     })
@@ -41,6 +41,7 @@ namespace DataLayer.Migrations
                         State = c.String(nullable: false, maxLength: 30, fixedLength: true),
                         City = c.String(nullable: false, maxLength: 30, fixedLength: true),
                         Country = c.String(nullable: false, maxLength: 30, fixedLength: true),
+                        IsActive = c.Boolean(nullable: false),
                         Type = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
                     })
@@ -88,6 +89,7 @@ namespace DataLayer.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         PhoneNumber = c.String(nullable: false, maxLength: 15, fixedLength: true),
                         Type = c.Int(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
                         UserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

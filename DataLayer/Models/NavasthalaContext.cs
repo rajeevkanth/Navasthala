@@ -17,11 +17,13 @@ namespace DataLayer.Models
 
         public DbSet<ExpressionOfInterest> ExpressionOfInterests { get; set; }
         public DbSet<AddressType> AddressTypes { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<PhoneType> PhoneTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<UpcomingProject> UpcomingProjects { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Investment> Investments { get; set; }
+        public DbSet<Phone> Phones { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,0 +1,141 @@
+﻿
+
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User address details</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="/Jqgrid/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+    <script src="/Jqgrid/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/grid.locale-en.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.jqGrid.min.js" type="text/javascript"></script>
+    <script src="/Jqgrid/Scripts/jquery.maskedinput-1.2.2.min.js" type="text/javascript"></script>
+
+</head>
+ 
+  
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        function addressLineValidation(value, name)
+        {
+            var errorMessage = name + ': Too Long';
+            var success = value.length <= 30 ;
+            console.log(success);
+            return [success, success ? '' : errorMessage];
+        }
+
+        $('#Done').mousedown(function () {
+            window.location.href = "@Url.Action("Index","User")";
+        });
+
+var updateDialog =
+        {
+            url: "@Url.Action("UpdateAddress","User")"
+            , closeAfterAdd: true
+            , closeAfterEdit: true
+            , afterShowForm: function (formId) {
+
+            }
+            , afterclickPgButtons: function (whichbutton, formid, rowid) {
+                // $("#PhoneNumber").mask("(999) 999-9999");
+            }
+            , modal: true
+
+            , onclickSubmit: function (params)
+            {
+                var ajaxData = {};
+
+                var list = $("#list");
+                var selectedRow = list.getGridParam("selrow");
+                rowData = list.getRowData(selectedRow);
+                ajaxData = { AddressId: rowData.AddressId };
+
+                return ajaxData;
+            }
+
+            , width: "500"
+        };
+            
+        $.jgrid.nav.addtext = "Add";
+        $.jgrid.nav.edittext = "Edit";
+        $.jgrid.nav.deltext = "Delete";
+        $.jgrid.edit.editCaption = "Edit Address";
+        $.jgrid.del.caption = "Delete Address";
+        $.jgrid.del.msg = "Delete selected Address?";
+            
+        $("#list").jqGrid({
+            url: "@Url.Action("GetAddresses","User")",
+            datatype: 'json',
+            mtype: 'GET',
+            colNames: ['AddressLineOne', 'AddressLineTwo', 'Suburb','City', 'State', 'Country','AddressType','AddressId'],
+            colModel: [
+                { name: 'AddressLineOne', index: 'AddressLineOne', width: 150, align: 'left', editable: true, edittype: 'textarea', editrules: { required: true, custom: true, custom_func: addressLineValidation }, formoptions: { elmsuffix: ' *' } },
+                { name: 'AddressLineTwo', index: 'AddressLineTwo', width: 150, align: 'left', editable: true, edittype: 'textarea', editrules: { required: false, custom: true, custom_func: addressLineValidation } },
+                { name: 'Suburb', index: 'Suburb', width: 100, align: 'left', editable: true, edittype: 'textarea', editrules: { required: true, custom: true, custom_func: addressLineValidation }, formoptions: { elmsuffix: ' *' } },
+                { name: 'City', index: 'City', width: 100, align: 'left', editable: true, edittype: 'textarea', editrules: { required: true, custom: true, custom_func: addressLineValidation }, formoptions: { elmsuffix: ' *' } },
+                { name: 'State', index: 'State', width: 100, align: 'left', editable: true, edittype: 'textarea', editrules: { required: true, custom: true, custom_func: addressLineValidation }, formoptions: { elmsuffix: ' *' } },
+                { name: 'Country', index: 'Country', width: 75, align: 'left', editable: true, edittype: 'text', editrules: { required: true, custom: true, custom_func: addressLineValidation }, formoptions: { elmsuffix: ' *' } },
+                { name: 'AddressType', index: 'AddressType', width: 100, align: 'left', editable: true, edittype: 'select',editoptions: { value: 'Home:Home;Work:Work' }, editrules: { required: true }, formoptions: { elmsuffix: ' *' } },
+                { name: 'AddressId', index: 'UserId', width: 40, align: 'left', /* key: true,*/ editable: false, editrules: { edithidden: false }, hidedlg: true, hidden: true }
+
+
+            ],
+
+            pager: $('#listPager'),
+            //rowNum: 1000,
+            //rowList: [1000],
+            sortname: 'AddressLineOne',
+            sortorder: "desc",
+            viewrecords: true,
+            imgpath: '/Content/Themes/Redmond/Images',
+            caption: 'Your Addresses',
+            autowidth: true
+        }).navGrid('#listPager',
+            {
+                edit: true, del: true, search: false, refresh: true, add: true
+            },
+              updateDialog,
+                updateDialog,
+                updateDialog
+        );
+        $('#login').mousedown(function (e) {
+            e.stopPropagation();
+            window.location.href = "@Url.Action("Login","Account")";
+        });
+
+        $('#User').mousedown(function (e) {
+            e.stopPropagation();
+            window.location.href = "@Url.Action("CurrentUser","Home")";
+            });
+
+        $('#logoff').mousedown(function (e) {
+            e.stopPropagation();
+            window.location.href = "@Url.Action("LogOff","Account")";
+
+            });
+
+        $('#Home').mousedown(function (e) {
+            e.stopPropagation();
+            window.location.href = "@Url.Action("Index","Home")";
+            });
+    }
+    );
+</script>
+<div class="page-region-content">
+<div class="fg-color-white" id="content" style="width: 750px;height: 470px;">
+    <table id="list" class="scroll"></table>
+    <div id="listPager" class="scroll" style="text-align:center;"></div>                                                            
+    <div id="listPsetcols" class="scroll" style="text-align:center;"></div>  
+    <br>
+    
+                <table>
+                <tr>
+                    <td style="border: 0px; float: left"><input type="button" value="Done" id="Done" class="submit-button" style="max-width: 100px; float: right"/></td>
+                </tr>
+            </table>
+</div>
+</div>

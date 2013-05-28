@@ -1,0 +1,132 @@
+﻿@model Navasthala.ViewModel.UserDetailsViewModel
+<head>
+    <title>
+        User personal details.
+    </title>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/Scripts/jquery.validate.js" type="text/javascript"></script>
+</head>
+
+
+<script>
+    $(function ()
+    {
+@*        $('#SaveForm').validate({
+            onkeyup: false,
+            rules: {
+                LastName: {
+                    required: true,
+                    maxlength: 25,
+                },
+                FirstName: {
+                    required: true,
+                    maxlength: 25,
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+            },
+                
+            messages: {
+                LastName: "Last name cant be blank",
+                FirstName: "First name cant be blank",
+                Email:"Email not in proper format"
+            },
+            
+            submitHandler: function (form) 
+            {
+                var data =
+                {
+                    LastName: $('#LastName').val(),
+                    FirstName: $('#FirstName').val() ,
+                    Email:$('#Email').val() ,
+                    DateOfBirth: $('#DateOfBirth').val(),
+                    UserName: $('#UserName').val()
+                };
+                   
+
+                $.ajax({
+                    type: "POST",
+                    url: "/User/SaveUserPersonalDetails",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8", 
+                    processdata: false, //True or False
+                    success: function (response)
+                    {
+                        window.location.href = "@Url.Action("Index","User")";
+
+                    },
+                    error: function (request, error) {
+                        window.location.href = "@Url.Action("Index","User")";
+                    }
+
+                });
+            }
+        });
+
+
+
+        $('#LastName').blur(function () {
+            $('#SaveForm').validate().element(this);
+        });
+        
+        $('#FirstName').blur(function () {
+            $('#SaveForm').validate().element(this);
+        });
+        *@
+      
+        $('#Cancel').mousedown(function ()
+        {
+            window.location.href = "@Url.Action("Index","User")";
+        });
+      
+    });
+</script>
+
+<body>
+<div class="page-region-content">
+
+        
+    <section id="search-form" class="EditForm fg-color-white">
+        
+        @using (Html.BeginForm())
+        {
+        
+            @Html.ValidationSummary(true)
+            @Html.LabelFor(p => p.LastName)
+            @Html.TextBoxFor(p => p.LastName)
+            @Html.ValidationMessageFor(p => p.LastName)
+            <br>
+
+            @Html.LabelFor(p => p.FirstName)
+            @Html.TextBoxFor(p => p.FirstName)
+            @Html.ValidationMessageFor(p=>p.FirstName)
+            <br>
+                            
+            @Html.LabelFor(p => p.Email)
+            @Html.TextBoxFor(p => p.Email)
+            @Html.ValidationMessageFor(p=>p.Email)
+            <br>
+                            
+            @Html.LabelFor(p => p.DateOfBirth)
+            @Html.TextBoxFor(p => p.DateOfBirth)
+            @Html.ValidationMessageFor(p=>p.DateOfBirth)
+                
+            @Html.HiddenFor(p=>p.UserName)
+            <br>
+            <table>
+                <tr>
+                    <td style="border: 0px; width: 100px"><input type="submit" value="Save" id="Save" class="submit-button" style="max-width: 100px"/></td>
+                    <td style="border: 0px; float: left"><input type="button" value="Cancel" id="Cancel" class="submit-button" style="max-width: 100px; float: right"/></td>
+                </tr>
+            </table>
+        }
+        
+                 
+
+    </section>
+        </div>
+</body>

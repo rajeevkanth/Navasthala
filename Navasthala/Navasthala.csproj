@@ -179,11 +179,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MailManager\MailManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="ViewModel\AddInvestorViewModel.cs" />
+    <Compile Include="ViewModel\AddressViewModel.cs" />
     <Compile Include="ViewModel\ContactViewModel.cs" />
+    <Compile Include="ViewModel\DisplayUserDetailsViewModel.cs" />
     <Compile Include="ViewModel\InvestorViewModel.cs" />
+    <Compile Include="ViewModel\PhoneViewModel.cs" />
     <Compile Include="ViewModel\UserDetailsViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
@@ -400,12 +404,15 @@
     <Content Include="html5gallery\skins\vertical\sliderbottom.png" />
     <Content Include="html5gallery\skins\vertical\slidertop.png" />
     <Content Include="images\about-us.jpg" />
+    <Content Include="images\Address.jpg" />
     <Content Include="images\adduser.png" />
     <Content Include="images\deleteuser.png" />
     <Content Include="images\EOI.jpg" />
+    <Content Include="images\Login.jpg" />
     <Content Include="images\Logo.png" />
     <Content Include="images\manageinvestor.jpg" />
     <Content Include="images\newsletter.png" />
+    <Content Include="images\PersonalDetails.jpg" />
     <Content Include="images\preloader-w8-cycle-black.gif" />
     <Content Include="images\preloader-w8-cycle-white.gif" />
     <Content Include="images\preloader-w8-line-black.gif" />
@@ -625,6 +632,8 @@
     <Content Include="javascript\start-menu.js" />
     <Content Include="javascript\tile-drag.js" />
     <Content Include="javascript\tile-slider.js" />
+    <Content Include="Mail\PasswordResetMail.html" />
+    <Content Include="Mail\WelcomeMail.html" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -680,9 +689,17 @@
     <Content Include="Views\Product\Bhajras.cshtml" />
     <Content Include="Views\Admin\EOIView.cshtml" />
     <Content Include="Views\Investor\Index.cshtml" />
+    <Content Include="Views\User\UserAddressView.cshtml" />
+    <Content Include="Views\User\UserPersonalDetailsView.cshtml" />
+    <Content Include="Views\User\UserPhoneView.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\PasswordResetConfirmation.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordFailure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

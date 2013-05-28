@@ -11,7 +11,7 @@ namespace DataLayer.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(NavasthalaContext context)
@@ -62,34 +62,34 @@ namespace DataLayer.Migrations
             if (membership.GetUser("Rajeev", false) == null)
             {
                 //membership.CreateUserAndAccount("Rajeev", "Admin123", new Dictionary<string, object> { new { "Email", "myemail@gmail.com" }});
-                WebSecurity.CreateUserAndAccount("Rajeev", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True" });
+                WebSecurity.CreateUserAndAccount("Rajeev", "Admin123", new { Email = "rajeevkanth.m@gmail.com", IsActive = "True" });
             }
 
             if (membership.GetUser("Vikram", false) == null)
             {
                 //membership.CreateUserAndAccount("Vikram", "Admin123");
-                WebSecurity.CreateUserAndAccount("Vikram", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True" });
+                WebSecurity.CreateUserAndAccount("Vikram", "Admin123", new { Email = "bpva2008@gmail.com", IsActive = "True" });
            
             }
 
             if (membership.GetUser("Aparna", false) == null)
             {
                 //membership.CreateUserAndAccount("Aparna", "Admin123");
-                WebSecurity.CreateUserAndAccount("Aparna", "Admin123", new { Email = "myemail@gmail.com",IsActive="True",LastName="Gudaloor" });
+                WebSecurity.CreateUserAndAccount("Aparna", "Admin123", new { Email = "aparna1777@gmail.com", IsActive = "True", LastName = "Gudaloor" });
            
             }
 
             if (membership.GetUser("Vidya", false) == null)
             {
                 //membership.CreateUserAndAccount("Vidya", "Admin123");
-                WebSecurity.CreateUserAndAccount("Vidya", "Admin123", new { Email = "myemail@gmail.com", IsActive = "True", LastName = "RamMohan" });
+                WebSecurity.CreateUserAndAccount("Vidya", "Admin123", new { Email = "windygreen7@gmail.com", IsActive = "True", LastName = "RamMohan" });
            
             }
 
             if (membership.GetUser("Fanboy", false) == null)
             {
                 //membership.CreateUserAndAccount("Fanboy", "Admin123");
-                WebSecurity.CreateUserAndAccount("Fanboy", "Admin123", new { Email = "myemail@gmail.com",IsActive="True" });
+                WebSecurity.CreateUserAndAccount("Fanboy", "Admin123", new { Email = "rajeevkanth1982@gmail.com",IsActive="True" });
            
             }
 

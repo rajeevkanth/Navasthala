@@ -52,9 +52,10 @@
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201305181153256_InitialCreate.cs" />
-    <Compile Include="Migrations\201305181153256_InitialCreate.Designer.cs">
-      <DependentUpon>201305181153256_InitialCreate.cs</DependentUpon>
+    <Compile Include="CustomValidator\UniqueEmailValidator.cs" />
+    <Compile Include="Migrations\201305280853481_InitialMigration.cs" />
+    <Compile Include="Migrations\201305280853481_InitialMigration.Designer.cs">
+      <DependentUpon>201305280853481_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
@@ -82,8 +83,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201305181153256_InitialCreate.resx">
-      <DependentUpon>201305181153256_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201305280853481_InitialMigration.resx">
+      <DependentUpon>201305280853481_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
